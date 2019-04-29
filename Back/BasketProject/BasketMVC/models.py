@@ -44,3 +44,17 @@ class partido(models.Model):
     tanteo_final = models.CharField(blank=False, max_length=7)
 
     jugadores = models.ManyToManyField(jugador, related_name="Jugadores")
+
+class stats_jugador(models.Model):
+    id_jugador = models.ForeignKey(jugador, on_delete=models.PROTECT)
+    id_partido = models.ForeignKey(partido, on_delete=models.PROTECT)
+
+    class Meta:
+        unique_together = ('id_jugador', 'id_partido')
+
+class stats_equipo(models.Model):
+    id_equipo = models.ForeignKey(equipo, on_delete=models.PROTECT)
+    id_partido = models.ForeignKey(partido, on_delete=models.PROTECT)
+
+    class Meta:
+        unique_together = ('id_equipo', 'id_partido')
