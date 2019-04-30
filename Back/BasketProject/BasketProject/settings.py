@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'BasketMVC'
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ DATABASES = {
         'NAME': "pruebabasket",
         'USER': "root",
         'PASSWORD': "",
-        'HOST': 'localost',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }

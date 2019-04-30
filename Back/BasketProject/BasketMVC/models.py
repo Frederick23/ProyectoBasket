@@ -12,7 +12,7 @@ class jugador(models.Model):
 class equipo(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField('Nombre', max_length=30)
-    sede = models.CharField('Dirección')
+    sede = models.CharField('Dirección', max_length=100)
 
 class partido(models.Model):
 
@@ -30,11 +30,11 @@ class partido(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    equipo1 = models.ForeignKey(equipo, on_delete=models.PROTECT)
-    equipo2 = models.ForeignKey(equipo, on_delete=models.PROTECT)
+    equipo1 = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Local")
+    equipo2 = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Visitante")
     fecha = models.DateField(blank=False)
     localizacion = models.CharField(max_length=30)
-    fase = models.CharField(choices=FASES, blank=False)
+    fase = models.CharField(choices=FASES, blank=False, max_length=100)
 
     cuarto1 = models.CharField(blank=False, max_length=5)
     cuarto2 = models.CharField(blank=False, max_length=5)
