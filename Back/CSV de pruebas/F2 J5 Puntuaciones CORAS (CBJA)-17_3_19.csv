@@ -1,0 +1,57 @@
+Partido
+Equipos,'CORAS - CBJA',Temporada,'2018-19: Temporada 2018-19',Fecha,17/3/19 10:45 a. m.
+Liga,NAC FEM: 1ª Nacional Femenina,Tipo,Oficial,Ubicación,Colegio Corazonistas
+
+Totales por Periodo
+Equipo,Periodo 1,Periodo 2,Periodo 3,Periodo 4,Total
+ CORAS,10,12,10,15,47
+ CBJA,21,15,22,18,76
+Alcala CBJA
+Jugador,PTS,TC2,TC3,TL,AS,TAP,REBO,REBD,RBBP,REBT,REC,DES,F,PER,'+F',TIEMPO,EFI
+ 7 Alicia Jimenez,7,2/4,1/1,0/0,7,,1,5,,6,2,,1,1,,,18.0
+ 8 Esperanza Toba,6,0/0,2/7,0/0,1,,,1,,1,,,1,1,,,1.0
+ 9 Sofia Paricio,5,1/2,1/5,0/0,,,1,1,,2,,,1,,1,,2.0
+ 12 Laura Martin,31,11/16,2/2,3/4,1,,2,6,,8,2,1,2,2,3,,33.0
+ 13 Fatima Pisonero,0,0/2,0/2,0/0,4,,,3,,3,1,,2,2,1,,1.0
+ 14 Ana Maria Jimenez,3,0/2,1/4,0/0,,,,2,,2,1,1,2,1,,,'-2.0'
+ 15 Raquel Sanchez,15,3/8,1/1,6/8,2,1,6,10,,16,2,1,2,1,4,,28.0
+ 17 Irene Sempere,6,1/5,0/0,4/4,3,1,4,1,,5,,1,3,2,4,,10.0
+ 18 Lydia Arias,0,0/0,0/1,0/0,,,1,1,,2,,,,,,,1.0
+ 23 B Corrales,3,0/0,1/2,0/0,,,,1,,1,,,,,,,3.0
+ 27 Belen de Lucas,0,0/0,0/2,0/0,2,,,,,,,,,1,,,'-1.0'
+ 28 M Fdez. Torres,0,0/0,0/0,0/0,,,,,,,,,1,,,,'-1.0'
+ Sin asignar,0,0/0,0/0,0/0,,,3,2,,5,,,,,,,5.0
+ Total,76,18/39,9/27,13/16,20,2,18,33,,51,8,4,15,11,13,,98.0
+Alcala CBJA Resumen de Tiros
+,TC,TC%,TC3,TC3%,TL,TL%
+ 1º Mitad,13/35,37%,5/15,33%,5/6,83%
+ 2ª Mitad,14/31,45%,4/12,33%,8/10,80%
+ Total,27/66,40%,9/27,33%,13/16,81%
+Corazonistas
+Jugador,PTS,TC2,TC3,TL,AS,TAP,REBO,REBD,RBBP,REBT,REC,DES,F,PER,'+F',TIEMPO,EFI
+ 5 Paula Prada,0,0/0,0/0,0/0,,,,,,,,,,,,,0.0
+ 6 Carmen Benito,2,1/3,0/0,0/0,3,2,1,4,,5,1,,2,5,1,25:35,5.0
+ 7 Ana Sesma,0,0/0,0/1,0/0,2,,,,,,,,2,1,1,15:50,'-1.0'
+ 10 Silvia Mesa,0,0/1,0/2,0/0,,,,1,,1,,1,,1,3,15:20,1.0
+ 15 Maria Conejero,8,1/8,2/8,0/0,4,,,2,,2,2,2,1,1,2,30:45,3.0
+ 16 Noelia Olmeda,5,1/5,1/2,0/0,,,1,,,1,,,2,,1,12:10,0.0
+ 17 Natalia Gonzalez,7,2/4,0/0,3/4,1,1,6,4,,10,1,,1,1,2,19:40,16.0
+ 19 Teresa Gracia,11,1/5,3/8,0/0,,,1,1,,2,1,,1,1,,30:25,3.0
+ 27 Marta Garcia,0,0/0,0/1,0/0,,,,,,,,,1,,,4:55,'-2.0'
+ 33 Amparo Lazaro,8,4/7,0/0,0/2,1,1,2,9,,11,,,3,4,4,22:35,11.0
+ 40 Mª Carmen Lopez,6,1/4,1/3,1/1,1,,,,,,,,,,1,22:45,3.0
+ Sin asignar,0,0/0,0/0,0/0,,,2,1,,3,,,1,,,,1.0
+ Total,47,11/37,7/25,4/7,12,4,13,22,,35,5,3,14,14,15,200:00,40.0
+Corazonistas Resumen de Tiros
+,TC,TC%,TC3,TC3%,TL,TL%
+ 1º Mitad,8/31,25%,4/11,36%,2/2,100%
+ 2ª Mitad,10/31,32%,3/14,21%,2/5,40%
+ Total,18/62,29%,7/25,28%,4/7,57%
+Jugadas del Partido de Un Solo Equipo
+Equipo,TC,TL,POS,P/POS,P/INT,ZONA,BANC,VENT
+ Corazonistas,18/62,4,66,0.71,0.76,9/32,15,1
+ Alcala CBJA,27/66,13,66,1.15,1.15,16/31,76,30
+Jugadas del partido combinadas
+Equipo,REBO%,REBD%,REBT%,POSD,PTRO,'P-PE'
+ Corazonistas,28.3%,55.0%,40.7%,33,2,2
+ Alcala CBJA,45.0%,71.7%,59.3%,47,4,11

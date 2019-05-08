@@ -1,0 +1,56 @@
+Partido
+Equipos,'CORAS - VILLALBA',Temporada,'2018-19: Temporada 2018-19',Fecha,24/2/19 8:30 p. m.
+Liga,NAC FEM: 1ª Nacional Femenina,Tipo,Oficial,Ubicación,Colegio Corazonistas
+
+Totales por Periodo
+Equipo,Periodo 1,Periodo 2,Periodo 3,Periodo 4,Total
+ CORAS,13,22,11,21,67
+ VILLALBA,7,19,5,2,33
+UB Villalba
+Jugador,PTS,TC2,TC3,TL,AS,TAP,REBO,REBD,RBBP,REBT,REC,DES,F,PER,'+F',TIEMPO,EFI
+ 0 Marta Tesoro,3,1/3,0/1,1/2,,,1,7,,8,,1,1,1,1,,6.0
+ 5 Helena Roldan,0,0/3,0/1,0/0,,,2,,,2,4,2,2,3,,,'-3.0'
+ 7 Isabel Benito,13,4/6,1/3,2/2,1,,1,2,,3,2,1,4,4,3,,10.0
+ 8 Sara Liaño,0,0/0,0/0,0/0,,,,,,,,,,,,,0.0
+ 9 Paula Mª Llamas,2,1/3,0/2,0/0,,,1,2,,3,,,2,1,,,'-3.0'
+ 10 Lorena Herraiz,0,0/2,0/3,0/0,,,,,,,,,2,,,,'-7.0'
+ 13 Maria Merino,5,1/4,1/4,0/0,,,2,3,,5,2,1,1,1,2,,5.0
+ 14 Paula Calderon,2,1/1,0/0,0/0,,,,,,,,,,,,,2.0
+ 15 Aida Muñoz,0,0/3,0/4,0/0,1,,,1,,1,,1,2,2,,,'-9.0'
+ 18 Maria Amores,6,2/7,0/3,2/4,2,,3,5,,8,,,,2,2,,4.0
+ 19 Nuria Gomez,0,0/0,0/0,0/0,,,,,,,,,,,,,0.0
+ 32 Regina Iglesias,2,1/4,0/0,0/0,,,1,2,,3,1,,4,2,4,,0.0
+ Sin asignar,0,0/0,0/0,0/0,,,1,3,,4,,1,,1,,,3.0
+ Total,33,11/36,2/21,5/8,4,,12,25,,37,9,7,18,17,12,,8.0
+UB Villalba Resumen de Tiros
+,TC,TC%,TC3,TC3%,TL,TL%
+ 1º Mitad,10/32,31%,2/13,15%,4/6,66%
+ 2ª Mitad,3/25,12%,0/8,0%,1/2,50%
+ Total,13/57,22%,2/21,9%,5/8,62%
+Corazonistas
+Jugador,PTS,TC2,TC3,TL,AS,TAP,REBO,REBD,RBBP,REBT,REC,DES,F,PER,'+F',TIEMPO,EFI
+ 5 Paula Prada,5,1/1,1/2,0/1,6,,,,,,1,1,2,2,1,17:35,7.0
+ 6 Carmen Benito,21,7/8,0/0,7/9,,1,3,9,,12,1,2,,2,6,28:45,36.0
+ 7 Ana Sesma,0,0/2,0/1,0/0,4,,,2,,2,1,,2,1,,20:40,1.0
+ 10 Silvia Mesa,4,1/4,0/5,2/2,2,,,2,,2,1,1,1,2,3,17:05,1.0
+ 15 Maria Conejero,11,3/5,1/4,2/2,,,1,2,,3,3,1,1,2,2,28:05,11.0
+ 16 Noelia Olmeda,12,2/3,2/3,2/4,,,1,6,,7,1,,2,2,2,21:30,14.0
+ 17 Natalia Gonzalez,8,3/8,0/0,2/2,1,,4,7,,11,1,,2,1,1,18:20,14.0
+ 19 Teresa Gracia,2,1/1,0/6,0/0,1,,,1,,1,1,,,1,,17:15,'-2.0'
+ 33 Amparo Lazaro,4,2/8,0/0,0/0,1,2,2,5,,7,,1,2,,3,11:25,9.0
+ 40 Mª Carmen Lopez,0,0/0,0/0,0/0,2,2,,1,,1,,,,,,19:20,5.0
+ Sin asignar,0,0/0,0/0,0/0,,,2,3,,5,,,,1,,,4.0
+ Total,67,20/40,4/21,15/20,17,5,13,38,,51,10,6,12,14,18,200:00,100.0
+Corazonistas Resumen de Tiros
+,TC,TC%,TC3,TC3%,TL,TL%
+ 1º Mitad,12/29,41%,4/11,36%,7/11,63%
+ 2ª Mitad,12/32,37%,0/10,0%,8/9,88%
+ Total,24/61,39%,4/21,19%,15/20,75%
+Jugadas del Partido de Un Solo Equipo
+Equipo,TC,TL,POS,P/POS,P/INT,ZONA,BANC,VENT
+ Corazonistas,24/61,15,71,0.94,1.10,19/36,21,34
+ UB Villalba,13/57,5,71,0.51,0.58,9/28,33,5
+Jugadas del partido combinadas
+Equipo,REBO%,REBD%,REBT%,POSD,PTRO,'P-PE'
+ Corazonistas,34.2%,76.0%,58.0%,55,2,10
+ UB Villalba,24.0%,65.8%,42.0%,39,4,6

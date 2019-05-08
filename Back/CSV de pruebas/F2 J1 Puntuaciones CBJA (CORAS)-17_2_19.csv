@@ -1,0 +1,53 @@
+Partido
+Equipos,'CBJA - CORAS',Temporada,'2018-19: Temporada 2018-19',Fecha,17/2/19 1:00 p. m.
+Liga,NAC FEM: 1ª Nacional Femenina,Tipo,Oficial,Ubicación,Pab. Juan de Austria
+
+Totales por Periodo
+Equipo,Periodo 1,Periodo 2,Periodo 3,Periodo 4,TE 1,Total
+ CBJA,13,11,24,13,10,71
+ CORAS,14,20,10,17,15,76
+Corazonistas
+Jugador,PTS,TC2,TC3,TL,AS,TAP,REBO,REBD,RBBP,REBT,REC,DES,F,PER,'+F',TIEMPO,EFI
+ 5 Paula Prada,0,0/0,0/3,0/0,1,,,1,,1,,,2,1,,12:45,'-4.0'
+ 6 Carmen Benito,4,2/5,0/0,0/0,,,1,3,,4,,,3,6,3,23:35,'-1.0'
+ 7 Ana Sesma,3,0/0,1/3,0/0,1,,,2,,2,,,,1,,25:05,3.0
+ 10 Silvia Mesa,1,0/0,0/3,1/2,3,,1,3,,4,,1,1,,3,16:20,6.0
+ 15 Maria Conejero,17,4/9,3/7,0/0,5,,1,4,,5,2,,3,,4,37:05,20.0
+ 16 Noelia Olmeda,13,4/12,1/4,2/4,1,,1,5,,6,1,1,4,1,3,25:55,6.0
+ 17 Natalia Gonzalez,5,2/3,0/0,1/1,2,,2,3,,5,,,3,2,1,9:30,7.0
+ 19 Teresa Gracia,16,1/2,4/11,2/4,2,,,1,,1,1,,1,,2,31:30,11.0
+ 33 Amparo Lazaro,15,7/10,0/0,1/3,4,,3,12,,15,1,,4,2,5,26:40,29.0
+ 40 Mª Carmen Lopez,2,1/1,0/0,0/0,1,,,4,,4,,,,1,1,16:35,6.0
+ Sin asignar,0,0/0,0/0,0/0,,,1,7,,8,,,,1,,,7.0
+ Total,76,21/42,9/31,7/14,20,,10,45,,55,5,2,21,15,22,225:00,90.0
+Corazonistas Resumen de Tiros
+,TC,TC%,TC3,TC3%,TL,TL%
+ 1º Mitad,15/32,46%,3/13,23%,1/1,100%
+ 2ª Mitad,10/33,30%,4/16,25%,3/7,42%
+ Total,30/73,41%,9/31,29%,7/14,50%
+Alcala CBJA
+Jugador,PTS,TC2,TC3,TL,AS,TAP,REBO,REBD,RBBP,REBT,REC,DES,F,PER,'+F',TIEMPO,EFI
+ 7 Alicia Jimenez,11,2/10,2/4,1/2,4,,1,8,,9,3,1,2,,4,,18.0
+ 8 Esperanza Toba,12,0/0,4/13,0/0,1,,,2,,2,,1,3,1,,,2.0
+ 9 Sofia Paricio,3,1/1,0/1,1/3,1,,,,,,1,,1,,1,,2.0
+ 13 Fatima Pisonero,6,2/5,0/4,2/2,4,,3,1,,4,,1,5,2,2,,2.0
+ 14 Ana Maria Jimenez,0,0/0,0/2,0/0,2,,,2,,2,,1,4,1,,,'-3.0'
+ 15 Raquel Sanchez,29,10/14,1/8,6/13,3,,4,6,,10,5,,2,1,8,,34.0
+ 17 Irene Sempere,8,3/8,0/0,2/5,1,2,2,6,,8,,,5,2,5,,9.0
+ 23 Marina Fernandez,0,0/2,0/1,0/0,1,,,,,,,,,,,,'-2.0'
+ 27 Belen de Lucas,2,1/3,0/0,0/0,,,,2,,2,,,,,1,,3.0
+ Sin asignar,0,0/0,0/0,0/0,,,1,6,,7,,,,,,,7.0
+ Total,71,19/43,7/33,12/25,17,2,11,33,,44,9,4,22,7,21,,72.0
+Alcala CBJA Resumen de Tiros
+,TC,TC%,TC3,TC3%,TL,TL%
+ 1º Mitad,11/34,32%,2/12,16%,0/4,0%
+ 2ª Mitad,12/34,35%,3/15,20%,10/17,58%
+ Total,26/76,34%,7/33,21%,12/25,48%
+Jugadas del Partido de Un Solo Equipo
+Equipo,TC,TL,POS,P/POS,P/INT,ZONA,BANC,VENT
+ Alcala CBJA,26/76,12,84,0.86,0.93,16/37,71,4
+ Corazonistas,30/73,7,84,0.90,1.04,17/31,24,15
+Jugadas del partido combinadas
+Equipo,REBO%,REBD%,REBT%,POSD,PTRO,'P-PE'
+ Alcala CBJA,19.6%,76.7%,44.4%,48,4,12
+ Corazonistas,23.3%,80.4%,55.6%,52,0,4

@@ -46,7 +46,7 @@ def upload_partido(request):
     p.save()
 
     ## Asociamos el listado de jugadores al partido ##
-    
+
 
     ## Rellenamos la tabla stats-jugador ##
 
