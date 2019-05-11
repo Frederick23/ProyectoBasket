@@ -2,6 +2,11 @@ from django.db import models
 
 
 
+class equipo(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField('Nombre', max_length=30)
+    sede = models.CharField('Dirección', max_length=100)
+
 class jugador(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField('Nombre', max_length=30, blank=False)
@@ -10,11 +15,6 @@ class jugador(models.Model):
     fecha_nac = models.DateField(blank=False)
     dorsal = models.CharField('Dorsal', max_length=3, blank=False)
     equipo = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Equipo")
-
-class equipo(models.Model):
-    id = models.AutoField(primary_key=True)
-    nombre = models.CharField('Nombre', max_length=30)
-    sede = models.CharField('Dirección', max_length=100)
 
 class partido(models.Model):
 
