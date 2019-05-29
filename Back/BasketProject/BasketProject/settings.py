@@ -52,6 +52,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'BasketProject.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -73,7 +74,7 @@ WSGI_APPLICATION = 'BasketProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+#Aqui están las bases de datos
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
