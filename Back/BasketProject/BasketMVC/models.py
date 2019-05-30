@@ -13,8 +13,8 @@ class jugador(models.Model):
     apellido1 = models.CharField('Primer Apellido', max_length=30, blank=False)
     apellido2 = models.CharField('Segundo Apellido', max_length=30, blank=False)
     fecha_nac = models.DateField(blank=False)
-    dorsal = models.CharField('Dorsal', max_length=3, blank=False)
-    equipo = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Equipo")
+    dorsal = models.CharField('Dorsal', max_length=3, blank=False, default="0")
+    equipo = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Equipo", default=1)
 
 class partido(models.Model):
 
