@@ -1,19 +1,44 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from forms import PartidoForm
 
 from BasketMVC.models import jugador, equipo, partido
 import csv
 
-
+## Devuelve la página de inicio ##
 def index(request):
-    return HttpResponse("Hola y bienvenido al index")
+    return render(request, 'inicio.html')
 
-
+## Muestra un jugador ##
 def Mostrar(request):
-    return render(request, 'tabla.html', {'jugadores': jugador.objects.all()})
+    return render(request, 'jugador.html', {'jugadores': jugador.objects.filter(name='nombre')})
 
+## Muestra un equipo ##
+def mostrar_equipo(request):
+    return render(request, 'equipo.html', {'equipos': equipo.objects.filter(name='nombre')})
+
+## Muestra listado equipos ##
+def mostrar_Equipos(request):
+    return render(request, 'list_equipos.html', {'equipos': equipo.objects.all()})
+
+## Muestra un listado de partidos ##
+def mostrar_Partidos(request):
+    return render(request, 'list_partidos.html', {'partidos': partido.objects.all()})
+
+## Muestra un partido ##
+def mostrar_partido(request):
+    return render(request, 'partido.html', {'equipos': partido.objects.filter(id='id')})
+
+## Agrega un partido ##
 def formulario_partido(request):
-    return render(request, 'formulario_partido.html', {'equipos': equipo.objects.all()})
+
+    ## Obtenemos la petición y mostramos el formulario ##
+    if request.method == 'POST':
+        upload_partido(request)
+        return render(request, 'formulario_partido.html')
+    else:
+        form = PartidoForm()
+        return render(request, 'formulario_partido.html', {'equipos': equipo.objects.all()})
 
 
 def upload_partido(request):

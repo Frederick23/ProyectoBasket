@@ -12,7 +12,6 @@ class jugadorAdmin(admin.ModelAdmin):
     ordering = ('equipo',)
     search_fields=('nombre','equipo')
 
-
 @admin.register(equipo)
 class equipoAdmin(admin.ModelAdmin):
     list_display = ('nombre',)
