@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <ul>
+        {% for resul in resultado %}
+            <li>--------- INICIO DE FILA ---------</li>
+            {% for palabra in resul %}
+                <li>
+                {{ palabra }}
+                </li>
+            {% endfor %}
+            <li>--------- FIN DE FILA ---------</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

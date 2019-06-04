@@ -103,7 +103,7 @@ class partido(models.Model):
     id = models.AutoField(primary_key=True)
     equipo1 = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Local")
     equipo2 = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Visitante")
-    fecha = models.DateField(blank=False)
+    fecha = models.CharField(max_length=12,blank=False)
     localizacion = models.CharField(max_length=30)
     fase = models.CharField(choices=FASES, blank=False, max_length=100)
 

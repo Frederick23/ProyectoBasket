@@ -1,0 +1,22 @@
+body {
+  padding-top: 5rem;
+  background-image: url("/static/images/fondo.jpeg");
+}
+
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.container{
+    background-color: white;
+}
+
+th {
+    text-align: center;
+    color: white;
+}
+
+thead {
+    background-color: #292b2c;
+}

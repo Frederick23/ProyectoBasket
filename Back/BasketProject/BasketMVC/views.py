@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from forms import PartidoForm
+from BasketMVC.forms import PartidoForm
 
 from BasketMVC.models import jugador, equipo, partido
 import csv
@@ -9,9 +9,13 @@ import csv
 def index(request):
     return render(request, 'inicio.html')
 
-## Muestra un jugador ##
+## Muestra varios jugadores ##
 def Mostrar(request):
-    return render(request, 'jugador.html', {'jugadores': jugador.objects.filter(name='nombre')})
+    return render(request, 'jugador.html', {'jugadores': jugador.objects.all()})
+
+## Muestra un único jugador ##
+def mostrar_jugador(request):
+    return render(request, 'jugadores.html', {'jugador': jugador.objects.filter(name='nombre')})
 
 ## Muestra un equipo ##
 def mostrar_equipo(request):
@@ -34,42 +38,49 @@ def formulario_partido(request):
 
     ## Obtenemos la petición y mostramos el formulario ##
     if request.method == 'POST':
-        upload_partido(request)
-        return render(request, 'formulario_partido.html')
+        form = PartidoForm(request.POST, request.FILES)
+        resultado = upload_partido(request.FILES['file'], request.POST['equipo1'], request.POST['equipo2'])
+        return render(request, 'prueba.html', {'resultado': resultado})
     else:
         form = PartidoForm()
-        return render(request, 'formulario_partido.html', {'equipos': equipo.objects.all()})
+        return render(request, 'formulario_partido.html', {'form': form})
 
 
-def upload_partido(request):
+def upload_partido(file, equipo1, equipo2):
+
     rows = []
-    csv_file = request.FILES["csv_file"]
-    csvreader = csv.reader(csv_file)
-    for row in csvreader:
-        rows.append(row)
+    fila = []
+    file_data = file.read().decode("utf-8")
+    lines = file_data.split("\n")
+    for line in lines:
+        fields = line.split(",")
+        for palabra in fields:
+            fila.append(palabra)
+        rows.append(fila.copy())
+        fila.clear()
+
 
     ## Obtenemos la información del partido ##
 
-    data_form = request.POST.dict()
-    local = data_form.get("equipo_local")
-    visitante = data_form.get("equipo_visit")
-    id1 = equipo(nombre=local)
-    id2 = equipo(nombre=visitante)
+    local = equipo1
+    visitante = equipo2
+
+    id1 = equipo.objects.get(nombre=local)
+    id2 = equipo.objects.get(nombre=visitante)
 
     ## Creamos y guardamos el objeto partido ##
     p = partido(
         equipo1 = id1,
         equipo2 = id2,
-        fecha = row[1][5],
+        fecha = rows[1][5],
         localizacion = id1.sede,
-        fase = data_form.get("fase"),
-        cuarto1 = row[6][1] + row[7][1],
-        cuarto2 = row[6][2] + row[7][2],
-        cuarto3 = row[6][3] + row[7][3],
-        cuarto4 = row[6][4] + row[7][4],
-        tanteo_final = row[6][5] + row[7][5])
+        cuarto1 = rows[6][1] + "-" + rows[7][1],
+        cuarto2 = rows[6][2] + "-" + rows[7][2],
+        cuarto3 = rows[6][3] + "-" + rows[7][3],
+        cuarto4 = rows[6][4] + "-" + rows[7][4],
+        tanteo_final = rows[6][5] + "-" + rows[7][5])
     p.save()
-
+    return rows
     ## Asociamos el listado de jugadores al partido ##
 
 

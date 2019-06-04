@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Fecha Nacimiento</th>
+                <th scope="col">PTS</th></tr>
+        </thead>
+     <tbody>
+        {% for jugador in jugadores %}
+        <tr>
+          <td scope="row"> {{ jugador.nombre}}</td>
+          <td >{{ jugador.apellido1}} {{ jugador.apellido2}}</td>
+          <td >{{ jugador.fecha_nac }}</td>
+          <td >{{ jugador.pts }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}
