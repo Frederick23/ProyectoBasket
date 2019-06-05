@@ -95,6 +95,11 @@ def upload_partido(file, equipo1, equipo2, fase1):
         rows.append(fields)
 
     lista = []
+    primeraA = True
+    segundaA = True
+    primeraB = True
+    segundaB = True
+    contVariables = 0
     # Buscamos donde empiezan y terminan las listas de jugadores
     for row in rows:
         for palabra in row:
@@ -102,20 +107,29 @@ def upload_partido(file, equipo1, equipo2, fase1):
             fililla = fililla.replace("'", "")
             limpita = re.sub(r'[ ^\s\d\w] & [ ^ /.]', '', fililla)
             if visitante in limpita:
-                ##lista.append(limpita)
-                rangoB1 = cont2
-                lista.append(cont2)
-                lista.append(limpita)
-                lista.append(len(limpita))
-                lista.append(len(visitante))
-            elif palabra == visitante+" Resumen de Tiros":
-                rangoB2 = cont2
+                if (primeraA == True and segundaA == True and cont2 != 3):
+                    rangoB1 = cont2
+                    primeraA = False
+                    contVariables += 1
+                    lista.append(rangoB1)
+                elif (primeraA == False and segundaA == True):
+                    rangoB2 = cont2
+                    segundaA = False
+                    contVariables += 1
+                    lista.append(rangoB2)
             elif local in limpita:
-                rangoA1 = cont2
-
-            elif palabra == local+" Resumen de Tiros":
-                rangoA2 = cont2
-
+                if (primeraB==True and segundaB == True and cont2 != 3):
+                    rangoA1 = cont2
+                    primeraB = False
+                    contVariables += 1
+                    lista.append(rangoA1)
+                elif (primeraB == False and segundaB == True):
+                    rangoA2 = cont2
+                    segundaB == False
+                    contVariables += 1
+                    lista.append(rangoA2)
+        if contVariables == 4:
+            break
         cont2 += 1
 
     # Dividimos en sublistas
