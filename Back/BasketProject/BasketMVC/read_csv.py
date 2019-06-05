@@ -1,7 +1,7 @@
 import csv
 import re
 
-"""
+
 # Info básica del partido (localización
 info_partido = []
 # Puntos por periodo de cada equipo
@@ -76,7 +76,7 @@ for fila in range(2, len(equipo1)-2):
     for celda in range(1, 18):
         jugador.append(equipo1[fila][celda])
     Listadjugadores.append(jugador.copy())
-    jugador.clear()"""
+    jugador.clear()
 
 file = open("prueba.csv",'r')
 rows = []

@@ -5,6 +5,19 @@ from django import forms
 class PartidoForm(forms.Form):
     equipo1 = forms.CharField()
     equipo2 = forms.CharField()
-    fase = forms.CharField()
+
+    PFASE = 'Primera Fase'
+    SFASE = 'Segunda Fase'
+    FINAL = 'Fase Final'
+    ASCENSO = 'Fase Ascenso'
+
+    FASES = (
+        (PFASE, 'Primera Fase'),
+        (SFASE, 'Segunda Fase'),
+        (FINAL, 'Fase Final'),
+        (ASCENSO, 'Fase de Ascenso')
+    )
+
+    fase = forms.ChoiceField(choices=FASES)
     file = forms.FileField()
 

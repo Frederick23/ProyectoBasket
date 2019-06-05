@@ -6,17 +6,20 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/Basket/index">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Equipos</a>
+        <a class="nav-link" href="">Equipos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Partidos</a>
+        <a class="nav-link" href="/Basket/mostrar_jugadores">Jugadores</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Administrar</a>
+        <a class="nav-link" href="/admin">Administrar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Basket/upload">Agregar Partido</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'logout' %}">Salir</a>
