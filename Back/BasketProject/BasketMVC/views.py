@@ -210,6 +210,8 @@ def upload_partido(file, equipo1, equipo2, fase1):
     p.save()
 
     ## Rellenamos la tabla stats-jugador ##
+
+    ## Equipo Visitante ##
     for p1 in list_jugadores_stats_VISITANTE:
         entrada = stats_jugador.objects.create(
             id_jugador = jugador.objects.get(dorsal = p1, equipo = id2),
@@ -237,42 +239,228 @@ def upload_partido(file, equipo1, equipo2, fase1):
         )
         entrada.save()
 
-    return "algo"
-    """
+    ## Equipo Local ##
     for p2 in list_jugadores_stats_LOCAL:
-        entrada = stats_jugador(
-            id_jugador=jugador.objects.get(),
-            id_partido=partido.objects.get(),
+        entrada = stats_jugador.objects.create(
+            id_jugador = jugador.objects.get(dorsal = p2, equipo = id1),
+            id_partido = partido.objects.get( equipo1 = id1, equipo2= id2, fase = fase1),
 
-            pts=list_jugadores_stats_VISITANTE[p1][0],
-            TC2=list_jugadores_stats_VISITANTE[p1][0],
-            I_TC2=list_jugadores_stats_VISITANTE[p1][0],
-            TC3=list_jugadores_stats_VISITANTE[p1][0],
-            I_TC3=list_jugadores_stats_VISITANTE[p1][0],
-            TL=list_jugadores_stats_VISITANTE[p1][0],
-            I_TL=list_jugadores_stats_VISITANTE[p1][0],
-            AS=list_jugadores_stats_VISITANTE[p1][0],
-            TAP=list_jugadores_stats_VISITANTE[p1][0],
-            REBO=list_jugadores_stats_VISITANTE[p1][0],
-            REBD=list_jugadores_stats_VISITANTE[p1][0],
-            REBT=list_jugadores_stats_VISITANTE[p1][0],
-            REC=list_jugadores_stats_VISITANTE[p1][0],
-            DES=list_jugadores_stats_VISITANTE[p1][0],
-            F=list_jugadores_stats_VISITANTE[p1][0],
-            PER=list_jugadores_stats_VISITANTE[p1][0],
-            FTO=list_jugadores_stats_VISITANTE[p1][0],
-            TIEMPO=list_jugadores_stats_VISITANTE[p1][0],
-            EFI=list_jugadores_stats_VISITANTE[p1][0]
+            pts= list_jugadores_stats_LOCAL[p2][0],
+            TC2 = list_jugadores_stats_LOCAL[p2][1].split("/")[0],
+            I_TC2 = list_jugadores_stats_LOCAL[p2][1].split("/")[1],
+            TC3 = list_jugadores_stats_LOCAL[p2][2].split("/")[0],
+            I_TC3 = list_jugadores_stats_LOCAL[p2][2].split("/")[1],
+            TL = list_jugadores_stats_LOCAL[p2][3].split("/")[0],
+            I_TL = list_jugadores_stats_LOCAL[p2][3].split("/")[1],
+            AS = list_jugadores_stats_LOCAL[p2][4],
+            TAP = list_jugadores_stats_LOCAL[p2][5],
+            REBO = list_jugadores_stats_LOCAL[p2][6],
+            REBD = list_jugadores_stats_LOCAL[p2][7],
+            REBT = list_jugadores_stats_LOCAL[p2][9],
+            REC = list_jugadores_stats_LOCAL[p2][10],
+            DES =list_jugadores_stats_LOCAL[p2][11],
+            F = list_jugadores_stats_LOCAL[p2][12],
+            PER = list_jugadores_stats_LOCAL[p2][13],
+            FTO = list_jugadores_stats_LOCAL[p2][14],
+            EFI = float(list_jugadores_stats_LOCAL[p2][16].replace("'",""))
 
         )
         entrada.save()
-        entrada.delete()
 
-    ## Rellenamos la tabla stats-partido ##
-
-    ## Actualizamos los stats acumulados del jugador ##
-
-    ## Actualizamos los stats acumulados del partido ##
-    
-    
     """
+    ## No asignadas del equipo Local ##
+    cont = 0
+    for campo in N_asignarA:
+
+        if cont == 0:
+            puntos = campo
+            cont += 1
+
+        elif cont==1:
+            tiros2 = campo.split("/")[0]
+            Itiros2 = campo.split("/")[1]
+            cont += 1
+
+        elif cont==2:
+            tiros3 = campo.split("/")[0]
+            Itiros3 = campo.split("/")[1]
+            cont += 1
+
+        elif cont == 3:
+            tirosL = campo.split("/")[0]
+            ILibres = campo.split("/")[1]
+            cont += 1
+
+        elif cont == 4:
+            asist = campo
+            cont += 1
+
+        elif cont == 5:
+           tapo = campo
+           cont += 1
+
+        elif cont == 6:
+            rebo = campo
+            cont += 1
+
+        elif cont == 7:
+            rebd = campo
+            cont +=1
+
+        elif cont == 8:
+            cont += 1
+
+        elif cont == 9:
+            rebot = campo
+            cont += 1
+
+        elif cont == 10:
+            recu = campo
+            cont += 1
+
+        elif cont == 11:
+            desv = campo
+            cont += 1
+
+        elif cont == 12:
+            faltas = campo
+            cont += 1
+
+        elif cont == 13:
+            perdidas = campo
+            cont += 1
+
+        elif cont == 14:
+            faltasO = campo
+            cont += 1
+
+        elif cont == 15:
+            cont += 1
+        
+        elif cont == 16:
+            efici = campo
+            cont += 1
+
+    entrada = stats_jugador.objects.create(
+        id_jugador=jugador.objects.get(nombre="Sin Asignar", equipo=id1),
+        id_partido=partido.objects.get(equipo1=id1, equipo2=id2, fase=fase1),
+
+        pts=puntos,
+        TC2=tiros2,
+        I_TC2=Itiros2,
+        TC3=tiros3,
+        I_TC3=Itiros3,
+        TL=tirosL,
+        I_TL=ILibres,
+        AS=asist,
+        TAP=tapo,
+        REBO=rebo,
+        REBD=rebd,
+        REBT=rebot,
+        REC=recu,
+        DES=desv,
+        F=faltas,
+        PER=perdidas,
+        FTO=faltasO,
+        EFI=efici
+    )
+    entrada.save()
+    """
+    return "algo"
+    """"
+    ## No asignadas del equipo Visitante ##
+    cont = 0
+    for fila in N_asignarB:
+        for campo in fila:
+            if cont == 0:
+                puntos = campo
+                cont += 1
+
+            elif cont==1:
+                tiros2 = campo.split("/")[0]
+                Itiros2 = campo.split("/")[1]
+                cont += 1
+
+            elif cont==2:
+                tiros3 = campo.split("/")[0]
+                Itiros3 = campo.split("/")[1]
+                cont += 1
+
+            elif cont == 3:
+                tirosL = campo.split("/")[0]
+                ILibres = campo.split("/")[1]
+                cont += 1
+
+            elif cont == 4:
+                asist = campo
+                cont += 1
+
+            elif cont == 5:
+                tapo = campo
+                cont += 1
+
+            elif cont == 6:
+                rebo = campo
+                cont += 1
+
+            elif cont == 7:
+                rebd = campo
+                cont +=1
+
+            elif cont == 9:
+                rebt = campo
+                cont += 1
+
+            elif cont == 10:
+                recu = campo
+                cont += 1
+
+            elif cont == 11:
+                desv = campo
+                cont += 1
+
+            elif cont == 12:
+                faltas = campo
+                cont += 1
+
+            elif cont == 13:
+                perdidas = campo
+                cont += 1
+
+            elif cont == 14:
+                faltasO = campo
+                cont += 1
+
+            elif cont == 16:
+                efici = campo
+                cont += 1
+
+        entrada = stats_jugador.objects.create(
+            id_jugador=jugador.objects.get(dorsal=100, equipo=id2),
+            id_partido=partido.objects.get(equipo1=id1, equipo2=id2, fase=fase1),
+
+            pts= puntos,
+            TC2= tiros2,
+            I_TC2= Itiros2,
+            TC3= tiros3,
+            I_TC3= Itiros3,
+            TL= tirosL,
+            I_TL= ILibres,
+            AS= asist,
+            TAP= tapo,
+            REBO= rebo,
+            REBD= rebd,
+            REBT= rebt,
+            REC= recu,
+            DES= desv,
+            F= faltas,
+            PER= perdidas,
+            FTO= faltasO,
+            EFI= efici
+        )
+        entrada.save()
+
+    """
+
+    return "algo"
+
