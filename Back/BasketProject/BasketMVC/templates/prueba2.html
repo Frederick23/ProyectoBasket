@@ -6,7 +6,10 @@
 </head>
 <body>
     <ul>
-        <li> {{resultado}} </li>
+        <li> {% for tal in resultado %}
+                {{ tal }}
+            {% endfor %}
+        </li>
     </ul>
 </body>
 </html>

@@ -101,6 +101,7 @@ class partido(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
+
     equipo1 = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Local")
     equipo2 = models.ForeignKey(equipo, on_delete=models.PROTECT, related_name="Visitante")
     fecha = models.CharField(max_length=12,blank=False)
@@ -114,7 +115,7 @@ class partido(models.Model):
     tiempos_extra = models.CharField(blank=False, max_length=5)
     tanteo_final = models.CharField(blank=False, max_length=7)
 
-    jugadores = models.ManyToManyField(jugador, related_name="Jugadores")
+
 
 class stats_jugador(models.Model):
     id_jugador = models.ForeignKey(jugador, on_delete=models.PROTECT)

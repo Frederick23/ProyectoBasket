@@ -86,15 +86,12 @@ def upload_partido(file, equipo1, equipo2, fase1):
     id2 = equipo.objects.get(nombre=visitante)
 
     rows = []
-    fila = []
-    sucia = []
     file_data = file.read().decode("utf-8")
     lines = file_data.split("\n")
     for line in lines:
         fields = line.split(",")
         rows.append(fields)
 
-    lista = []
     primeraA = True
     segundaA = True
     primeraB = True
@@ -111,23 +108,19 @@ def upload_partido(file, equipo1, equipo2, fase1):
                     rangoB1 = cont2
                     primeraA = False
                     contVariables += 1
-                    lista.append(rangoB1)
                 elif (primeraA == False and segundaA == True):
                     rangoB2 = cont2
                     segundaA = False
                     contVariables += 1
-                    lista.append(rangoB2)
             elif local in limpita:
                 if (primeraB==True and segundaB == True and cont2 != 3):
                     rangoA1 = cont2
                     primeraB = False
                     contVariables += 1
-                    lista.append(rangoA1)
                 elif (primeraB == False and segundaB == True):
                     rangoA2 = cont2
                     segundaB == False
                     contVariables += 1
-                    lista.append(rangoA2)
         if contVariables == 4:
             break
         cont2 += 1
@@ -144,9 +137,6 @@ def upload_partido(file, equipo1, equipo2, fase1):
             equipoB.append(row)
         cont += 1
 
-    return lista
-
-    """"
     # Convertimos los campos vacios en 0
     for fila in equipoA:
         for celda in fila:
@@ -157,8 +147,24 @@ def upload_partido(file, equipo1, equipo2, fase1):
             if celda == "":
                 equipoB[equipoB.index(fila)][fila.index(celda)] = "0"
 
+
+
+    ## Filas "Sin Asignar"
+    lugar = len(equipoA) - 3
+    N_asignarA = []
+    tamano = len(equipoA[lugar])
+    for i in range(1, tamano):
+        N_asignarA.append(equipoA[lugar][i])
+
+    lugar2 = len(equipoB) - 3
+    N_asignarB = []
+    tamano2 = len(equipoB[lugar2])
+    for j in range(1, tamano2):
+        N_asignarB.append(equipoB[lugar2][j])
+
+
     # Creamos un diccionario con dorsal-jugador y una lista con nombre jugador + stats
-    for fila in range(2, len(equipoA) - 2):
+    for fila in range(1, len(equipoA) - 2):
         ## Obtenemos el dorsal ##
         Dorsal = re.sub(r'[^\d]', '', equipoA[fila][0])
         ## Guardamos en la lista player sus stats ##
@@ -168,9 +174,11 @@ def upload_partido(file, equipo1, equipo2, fase1):
         list_jugadores_stats_LOCAL[Dorsal] = player.copy()
         player.clear()
         ## Añadimos el jugador en la lista de jugadore del partido ##
-        list_jugadores.append(jugador.object.get(dorsal=Dorsal,equipo=id1.id))
+        list_jugadores.append(jugador.objects.get(dorsal=Dorsal,equipo=id1.id))
 
-    for fila in range(2, len(equipoB) - 2):
+
+
+    for fila in range(1, len(equipoB) - 2):
         ## Obtenemos el dorsal ##
         Dorsal = re.sub(r'[^\d]', '', equipoB[fila][0])
         ## Guardamos en la lista player sus stats ##
@@ -180,58 +188,57 @@ def upload_partido(file, equipo1, equipo2, fase1):
         list_jugadores_stats_VISITANTE[Dorsal] = player.copy()
         player.clear()
         ## Añadimos el jugador en la lista de jugadore del partido ##
-        list_jugadores.append(jugador.object.get(dorsal=Dorsal, equipo=id1.id))
+        list_jugadores.append(jugador.objects.get(dorsal=Dorsal, equipo=id2.id))
     
-    """
+        ##return list_jugadores_stats_LOCAL.items()
 
-    """
+
     ## Creamos y guardamos el objeto partido ##
-    p = partido(
+
+    p = partido.objects.create(
         equipo1 = id1,
         equipo2 = id2,
         fecha = info_partido[1][5],
         localizacion = id1.sede,
-        ##fase = fase1,
+        fase = fase1,
         cuarto1 = info_puntos[2][1] + "-" + info_puntos[3][1],
         cuarto2 = info_puntos[2][2] + "-" + info_puntos[3][2],
         cuarto3 = info_puntos[2][3] + "-" + info_puntos[3][3],
         cuarto4 = info_puntos[2][4] + "-" + info_puntos[3][4],
         tanteo_final = info_puntos[2][5] + "-" + info_puntos[3][5],
-        jugadores = list_jugadores
     )
     p.save()
 
-
     ## Rellenamos la tabla stats-jugador ##
     for p1 in list_jugadores_stats_VISITANTE:
-        entrada = stats_jugador(
-            id_jugador = jugador.objects.get(),
-            id_partido = partido.objects.get(),
+        entrada = stats_jugador.objects.create(
+            id_jugador = jugador.objects.get(dorsal = p1, equipo = id2),
+            id_partido = partido.objects.get( equipo1 = id1, equipo2= id2, fase = fase1),
 
             pts= list_jugadores_stats_VISITANTE[p1][0],
-            TC2 = list_jugadores_stats_VISITANTE[p1][0],
-            I_TC2 = list_jugadores_stats_VISITANTE[p1][0],
-            TC3 = list_jugadores_stats_VISITANTE[p1][0],
-            I_TC3 = list_jugadores_stats_VISITANTE[p1][0],
-            TL = list_jugadores_stats_VISITANTE[p1][0],
-            I_TL = list_jugadores_stats_VISITANTE[p1][0],
-            AS = list_jugadores_stats_VISITANTE[p1][0],
-            TAP = list_jugadores_stats_VISITANTE[p1][0],
-            REBO = list_jugadores_stats_VISITANTE[p1][0],
-            REBD = list_jugadores_stats_VISITANTE[p1][0],
-            REBT = list_jugadores_stats_VISITANTE[p1][0],
-            REC = list_jugadores_stats_VISITANTE[p1][0],
-            DES =list_jugadores_stats_VISITANTE[p1][0],
-            F = list_jugadores_stats_VISITANTE[p1][0],
-            PER = list_jugadores_stats_VISITANTE[p1][0],
-            FTO = list_jugadores_stats_VISITANTE[p1][0],
-            TIEMPO = list_jugadores_stats_VISITANTE[p1][0],
-            EFI = list_jugadores_stats_VISITANTE[p1][0]
+            TC2 = list_jugadores_stats_VISITANTE[p1][1].split("/")[0],
+            I_TC2 = list_jugadores_stats_VISITANTE[p1][1].split("/")[1],
+            TC3 = list_jugadores_stats_VISITANTE[p1][2].split("/")[0],
+            I_TC3 = list_jugadores_stats_VISITANTE[p1][2].split("/")[1],
+            TL = list_jugadores_stats_VISITANTE[p1][3].split("/")[0],
+            I_TL = list_jugadores_stats_VISITANTE[p1][3].split("/")[1],
+            AS = list_jugadores_stats_VISITANTE[p1][4],
+            TAP = list_jugadores_stats_VISITANTE[p1][5],
+            REBO = list_jugadores_stats_VISITANTE[p1][6],
+            REBD = list_jugadores_stats_VISITANTE[p1][7],
+            REBT = list_jugadores_stats_VISITANTE[p1][9],
+            REC = list_jugadores_stats_VISITANTE[p1][10],
+            DES =list_jugadores_stats_VISITANTE[p1][11],
+            F = list_jugadores_stats_VISITANTE[p1][12],
+            PER = list_jugadores_stats_VISITANTE[p1][13],
+            FTO = list_jugadores_stats_VISITANTE[p1][14],
+            EFI = float(list_jugadores_stats_VISITANTE[p1][16].replace("'",""))
 
         )
         entrada.save()
-        entrada.delete()
 
+    return "algo"
+    """
     for p2 in list_jugadores_stats_LOCAL:
         entrada = stats_jugador(
             id_jugador=jugador.objects.get(),
@@ -260,10 +267,12 @@ def upload_partido(file, equipo1, equipo2, fase1):
         )
         entrada.save()
         entrada.delete()
-    
-    """
+
     ## Rellenamos la tabla stats-partido ##
 
     ## Actualizamos los stats acumulados del jugador ##
 
-    ## Actualizamos los stats acumulados del partido ##"""
+    ## Actualizamos los stats acumulados del partido ##
+    
+    
+    """

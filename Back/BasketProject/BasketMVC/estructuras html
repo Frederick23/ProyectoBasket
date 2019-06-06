@@ -1,0 +1,17 @@
+        {% for key,item in resultado %}
+            <li>--------- INICIO DE FILA ---------</li>
+                <p>{{key}}</p>
+                <ul>
+                {% for celda in item %}
+                    <li>{{ celda }}</li>
+                {% endfor %}
+                </ul>
+            <li>--------- FIN DE FILA ---------</li>
+        {% endfor %}
+
+
+        {% for fila in resultado %}
+            <li>--------- INICIO DE FILA ---------</li>
+                {{ fila }}
+            <li>--------- FIN DE FILA ---------</li>
+        {% endfor %}
