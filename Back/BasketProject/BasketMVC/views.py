@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from datetime import time
 from BasketMVC.forms import PartidoForm
 import re
-
+import copy
 from BasketMVC.models import jugador, equipo, partido, stats_equipo, stats_jugador
 import csv
 
@@ -85,6 +86,12 @@ def upload_partido(file, equipo1, equipo2, fase1):
     ## Id de equipo Visitante ##
     id2 = equipo.objects.get(nombre=visitante)
 
+    id_partido = partido.objects.get(equipo1=id1,equipo2=id2,fase=fase1)
+    ## Llamada a función que actualiza las estadísticas globales de jugador y equipo ##
+    actualizar_jugadores(local,visitante,id_partido)
+    actualizar_equipos(local,visitante,id_partido)
+
+    """
     rows = []
     file_data = file.read().decode("utf-8")
     lines = file_data.split("\n")
@@ -126,6 +133,8 @@ def upload_partido(file, equipo1, equipo2, fase1):
         cont2 += 1
 
     # Dividimos en sublistas
+    longitud = len(rows)
+
     for row in rows:
         if cont in range(0, 2):
             info_partido.append(row)
@@ -210,7 +219,6 @@ def upload_partido(file, equipo1, equipo2, fase1):
     p.save()
 
     ## Rellenamos la tabla stats-jugador ##
-
     ## Equipo Visitante ##
     for p1 in list_jugadores_stats_VISITANTE:
         entrada = stats_jugador.objects.create(
@@ -234,7 +242,8 @@ def upload_partido(file, equipo1, equipo2, fase1):
             F = list_jugadores_stats_VISITANTE[p1][12],
             PER = list_jugadores_stats_VISITANTE[p1][13],
             FTO = list_jugadores_stats_VISITANTE[p1][14],
-            EFI = float(list_jugadores_stats_VISITANTE[p1][16].replace("'",""))
+            EFI = float(list_jugadores_stats_VISITANTE[p1][16].replace("'","")),
+            TIEMPO = list_jugadores_stats_VISITANTE[p1][15].replace("'", "")
 
         )
         entrada.save()
@@ -262,205 +271,263 @@ def upload_partido(file, equipo1, equipo2, fase1):
             F = list_jugadores_stats_LOCAL[p2][12],
             PER = list_jugadores_stats_LOCAL[p2][13],
             FTO = list_jugadores_stats_LOCAL[p2][14],
-            EFI = float(list_jugadores_stats_LOCAL[p2][16].replace("'",""))
+            EFI=float(list_jugadores_stats_LOCAL[p2][16].replace("'", "")),
+            TIEMPO = list_jugadores_stats_LOCAL[p2][15].replace("'", "")
 
         )
         entrada.save()
 
-    """
-    ## No asignadas del equipo Local ##
-    cont = 0
-    for campo in N_asignarA:
 
-        if cont == 0:
-            puntos = campo
-            cont += 1
 
-        elif cont==1:
-            tiros2 = campo.split("/")[0]
-            Itiros2 = campo.split("/")[1]
-            cont += 1
+    ## Rellenamos la tabla stats-equipo ##
 
-        elif cont==2:
-            tiros3 = campo.split("/")[0]
-            Itiros3 = campo.split("/")[1]
-            cont += 1
+    ## Equipo Local ##
 
-        elif cont == 3:
-            tirosL = campo.split("/")[0]
-            ILibres = campo.split("/")[1]
-            cont += 1
-
-        elif cont == 4:
-            asist = campo
-            cont += 1
-
-        elif cont == 5:
-           tapo = campo
-           cont += 1
-
-        elif cont == 6:
-            rebo = campo
-            cont += 1
-
-        elif cont == 7:
-            rebd = campo
-            cont +=1
-
-        elif cont == 8:
-            cont += 1
-
-        elif cont == 9:
-            rebot = campo
-            cont += 1
-
-        elif cont == 10:
-            recu = campo
-            cont += 1
-
-        elif cont == 11:
-            desv = campo
-            cont += 1
-
-        elif cont == 12:
-            faltas = campo
-            cont += 1
-
-        elif cont == 13:
-            perdidas = campo
-            cont += 1
-
-        elif cont == 14:
-            faltasO = campo
-            cont += 1
-
-        elif cont == 15:
-            cont += 1
-        
-        elif cont == 16:
-            efici = campo
-            cont += 1
-
-    entrada = stats_jugador.objects.create(
-        id_jugador=jugador.objects.get(nombre="Sin Asignar", equipo=id1),
-        id_partido=partido.objects.get(equipo1=id1, equipo2=id2, fase=fase1),
-
-        pts=puntos,
-        TC2=tiros2,
-        I_TC2=Itiros2,
-        TC3=tiros3,
-        I_TC3=Itiros3,
-        TL=tirosL,
-        I_TL=ILibres,
-        AS=asist,
-        TAP=tapo,
-        REBO=rebo,
-        REBD=rebd,
-        REBT=rebot,
-        REC=recu,
-        DES=desv,
-        F=faltas,
-        PER=perdidas,
-        FTO=faltasO,
-        EFI=efici
+    entrada1 = stats_equipo.objects.create(
+        id_equipo = equipo.objects.get(nombre=local),
+        id_partido = partido.objects.get(equipo1=id1, equipo2=id2, fase=fase1)
     )
-    entrada.save()
+    celda = equipoA[len(equipoA)-2]
+    entrada1.pts = celda[1]
+    entrada1.TC2 = celda[2].split("/")[0]
+    entrada1.I_TC2 = celda[2].split("/")[1]
+    entrada1.TC3 = celda[3].split("/")[0]
+    entrada1.I_TC3 = celda[3].split("/")[1]
+    entrada1.TL = celda[4].split("/")[0]
+    entrada1.I_TL = celda[4].split("/")[0]
+    entrada1.AS = celda[5]
+    entrada1.TAP = celda[6]
+    entrada1.REBO = celda[7]
+    entrada1.REBD = celda[8]
+    entrada1.REBT = celda[10]
+    entrada1.REC = celda[11]
+    entrada1.DES = celda[12]
+    entrada1.F = celda[13]
+    entrada1.PER = celda[14]
+    entrada1.FTO = celda[15]
+    entrada1.EFI = float(celda[17].replace("'", ""))
+
+    campo = rows[len(rows)-7]
+    entrada1.POS = campo[3]
+    entrada1.P_POS = campo[4]
+    entrada1.ZONA = campo[6].split("/")[0]
+    entrada1.I_ZONA = campo[6].split("/")[1]
+    entrada1.VENT = campo[8]
+    entrada1.save()
+
+    ## Equipo Visitante ##
+
+    entrada2 = stats_equipo.objects.create(
+        id_equipo=equipo.objects.get(nombre=visitante),
+        id_partido=partido.objects.get(equipo1=id1, equipo2=id2, fase=fase1)
+    )
+    celda2 = equipoB[len(equipoB) - 2]
+    entrada2.pts = celda2[1]
+    entrada2.TC2 = celda2[2].split("/")[0]
+    entrada2.I_TC2 = celda2[2].split("/")[1]
+    entrada2.TC3 = celda2[3].split("/")[0]
+    entrada2.I_TC3 = celda2[3].split("/")[1]
+    entrada2.TL = celda2[4].split("/")[0]
+    entrada2.I_TL = celda2[4].split("/")[0]
+    entrada2.AS = celda2[5]
+    entrada2.TAP = celda2[6]
+    entrada2.REBO = celda2[7]
+    entrada2.REBD = celda2[8]
+    entrada2.REBT = celda2[10]
+    entrada2.REC = celda2[11]
+    entrada2.DES = celda2[12]
+    entrada2.F = celda2[13]
+    entrada2.PER = celda2[14]
+    entrada2.FTO = celda2[15]
+    entrada2.EFI = float(celda[17].replace("'", ""))
+
+    campo2 = rows[len(rows) - 6]
+    entrada2.POS = campo2[3]
+    entrada2.P_POS = campo2[4]
+    entrada2.ZONA = campo2[6].split("/")[0]
+    entrada2.I_ZONA = campo2[6].split("/")[1]
+    entrada2.VENT = campo2[8]
+    entrada2.save()
+
+
+    id_partido = partido.objects(equipo1=id1,equipo2=id2,fase=fase1)
+    ## Llamada a función que actualiza las estadísticas globales de jugador y equipo ##
+    actualizar_jugadores(local,visitante,id_partido)
     """
     return "algo"
-    """"
-    ## No asignadas del equipo Visitante ##
-    cont = 0
-    for fila in N_asignarB:
-        for campo in fila:
-            if cont == 0:
-                puntos = campo
-                cont += 1
 
-            elif cont==1:
-                tiros2 = campo.split("/")[0]
-                Itiros2 = campo.split("/")[1]
-                cont += 1
+def actualizar_jugadores(equipo1, equipo2, partido):
 
-            elif cont==2:
-                tiros3 = campo.split("/")[0]
-                Itiros3 = campo.split("/")[1]
-                cont += 1
+    id_equipo1 = equipo.objects.get(nombre=equipo1)
+    id_equipo2 = equipo.objects.get(nombre=equipo2)
+    jugadores = jugador.objects.filter(equipo = id_equipo1)
+    jugadoresV = jugador.objects.filter(equipo = id_equipo2)
 
-            elif cont == 3:
-                tirosL = campo.split("/")[0]
-                ILibres = campo.split("/")[1]
-                cont += 1
+    ## Equipo local ##
+    for player in jugadores:
+        datos_jugador = stats_jugador.objects.filter(id_jugador=player.id, id_partido=partido)
+        if len(datos_jugador) == 1:
+            player.partidos = player.partidos + 1
+            player.pts = player.pts + datos_jugador[0].pts
+            player.p_p = player.pts / player.partidos
 
-            elif cont == 4:
-                asist = campo
-                cont += 1
+            player.TC2 = player.TC2 + datos_jugador[0].TC2
+            player.I_TC2 += datos_jugador[0].I_TC2
+            if(player.I_TC2 != 0):
+                player.TC2_P = int((player.TC2 / player.I_TC2)*100)
 
-            elif cont == 5:
-                tapo = campo
-                cont += 1
+            player.TC3 += datos_jugador[0].TC3
+            player.I_TC3 += datos_jugador[0].I_TC3
+            if(player.I_TC3 != 0):
+                player.TC3_P = int((player.TC3 / player.I_TC3)*100)
 
-            elif cont == 6:
-                rebo = campo
-                cont += 1
+            if player.I_TC2 != 0 and player.I_TC3 != 0:
+                player.TC_P = int(((player.TC2 + player.TC3 )/ (player.I_TC2 + player.I_TC3 ))*100)
 
-            elif cont == 7:
-                rebd = campo
-                cont +=1
+            player.TL += datos_jugador[0].TL
+            player.I_TL += datos_jugador[0].I_TL
+            if(player.I_TL != 0):
+                player.TL_P = int((player.TL / player.I_TL)*100)
 
-            elif cont == 9:
-                rebt = campo
-                cont += 1
+            player.AS += datos_jugador[0].AS
+            player.AS_p = player.AS / player.partidos
+            player.TAP += datos_jugador[0].TAP
+            player.TAP_p = player.TAP / player.partidos
 
-            elif cont == 10:
-                recu = campo
-                cont += 1
+            player.REBO += datos_jugador[0].REBO
+            player.REBD += datos_jugador[0].REBD
+            player.REBT += datos_jugador[0].REBT
+            player.REB_p = player.REBT / player.partidos
 
-            elif cont == 11:
-                desv = campo
-                cont += 1
+            player.REC += datos_jugador[0].REC
+            player.REC_p = player.REC / player.partidos
+            player.DES += datos_jugador[0].DES
+            player.F += datos_jugador[0].F
+            player.PER += datos_jugador[0].PER
+            player.FTO += datos_jugador[0].FTO
 
-            elif cont == 12:
-                faltas = campo
-                cont += 1
+            player.save()
 
-            elif cont == 13:
-                perdidas = campo
-                cont += 1
+    ## Equipo Visitante ##
+    for player2 in jugadoresV:
+        datos_jugadorV = stats_jugador.objects.filter(id_jugador=player2.id, id_partido=partido)
+        if len(datos_jugadorV) == 1:
+            player2.partidos = player2.partidos + 1
+            player2.pts = player2.pts + datos_jugadorV[0].pts
+            player2.p_p = player2.pts / player2.partidos
 
-            elif cont == 14:
-                faltasO = campo
-                cont += 1
+            player2.TC2 = player2.TC2 + datos_jugadorV[0].TC2
+            player2.I_TC2 += datos_jugadorV[0].I_TC2
+            if(player2.I_TC2 != 0):
+                player2.TC2_P = int((player2.TC2 / player2.I_TC2) * 100)
 
-            elif cont == 16:
-                efici = campo
-                cont += 1
+            player2.TC3 += datos_jugadorV[0].TC3
+            player2.I_TC3 += datos_jugadorV[0].I_TC3
+            if(player2.I_TC3 != 0):
+                player2.TC3_P = int((player2.TC3 / player2.I_TC3) * 100)
 
-        entrada = stats_jugador.objects.create(
-            id_jugador=jugador.objects.get(dorsal=100, equipo=id2),
-            id_partido=partido.objects.get(equipo1=id1, equipo2=id2, fase=fase1),
+            if player2.I_TC2 != 0 and player2.I_TC3 != 0:
+                player2.TC_P = int(((player2.TC2 + player2.TC3) / (player2.I_TC2 + player2.I_TC3)) * 100)
 
-            pts= puntos,
-            TC2= tiros2,
-            I_TC2= Itiros2,
-            TC3= tiros3,
-            I_TC3= Itiros3,
-            TL= tirosL,
-            I_TL= ILibres,
-            AS= asist,
-            TAP= tapo,
-            REBO= rebo,
-            REBD= rebd,
-            REBT= rebt,
-            REC= recu,
-            DES= desv,
-            F= faltas,
-            PER= perdidas,
-            FTO= faltasO,
-            EFI= efici
-        )
-        entrada.save()
 
-    """
+            player2.TL += datos_jugadorV[0].TL
+            player2.I_TL += datos_jugadorV[0].I_TL
+            if(player2.I_TL != 0):
+                player2.TL_P = int((player2.TL / player2.I_TL) * 100)
 
-    return "algo"
+            player2.AS += datos_jugadorV[0].AS
+            player2.AS_p = player2.AS / player2.partidos
+            player2.TAP += datos_jugadorV[0].TAP
+            player2.TAP_p = player2.TAP / player2.partidos
 
+            player2.REBO += datos_jugadorV[0].REBO
+            player2.REBD += datos_jugadorV[0].REBD
+            player2.REBT += datos_jugadorV[0].REBT
+            player2.REB_p = player2.REBT / player2.partidos
+
+            player2.REC += datos_jugadorV[0].REC
+            player2.REC_p = player2.REC / player2.partidos
+            player2.DES += datos_jugadorV[0].DES
+            player2.F += datos_jugadorV[0].F
+            player2.PER += datos_jugadorV[0].PER
+            player2.FTO += datos_jugadorV[0].FTO
+
+            player2.save()
+
+
+def actualizar_equipos(equipo1,equipo2,partido):
+    id_equipo1 = equipo.objects.get(nombre=equipo1)
+    id_equipo2 = equipo.objects.get(nombre=equipo2)
+
+    datos_equipo1 = stats_equipo.objects.get(id_equipo = id_equipo1, id_partido=partido)
+    datos_equipo2 = stats_equipo.objects.get(id_equipo = id_equipo2, id_partido=partido)
+
+    ## Equipo Local ##
+    id_equipo1.TC2 += datos_equipo1.TC2
+    id_equipo1.I_TC2 += datos_equipo1.I_TC2
+
+    if (id_equipo1.I_TC2 != 0):
+        id_equipo1.TC2_P = int((id_equipo1.TC2 / id_equipo1.I_TC2) * 100)
+
+    id_equipo1.TC3 += datos_equipo1.TC3
+    id_equipo1.I_TC3 += datos_equipo1.I_TC3
+
+    if (id_equipo1.I_TC3 != 0):
+        id_equipo1.TC3_P = int((id_equipo1.TC3 / id_equipo1.I_TC3) * 100)
+
+    if id_equipo1.I_TC2 != 0 and id_equipo1.I_TC3 != 0:
+        id_equipo1.TC_P = int(((id_equipo1.TC2 + id_equipo1.TC3) / (id_equipo1.I_TC2 + id_equipo1.I_TC3)) * 100)
+
+    id_equipo1.TL += datos_equipo1.TL
+    id_equipo1.I_TL += datos_equipo1.I_TL
+
+    if (id_equipo1.I_TL != 0):
+        id_equipo1.TL_P = int((id_equipo1.TL / id_equipo1.I_TL) * 100)
+
+    id_equipo1.AS += datos_equipo1.AS
+    id_equipo1.TAP += datos_equipo1.TAP
+    id_equipo1.REBO += datos_equipo1.REBO
+    id_equipo1.REBD += datos_equipo1.REBD
+    id_equipo1.REBT += datos_equipo1.REBT
+    id_equipo1.REC += datos_equipo1.REC
+    id_equipo1.DES += datos_equipo1.DES
+    id_equipo1.F += datos_equipo1.F
+    id_equipo1.PER += datos_equipo1.PER
+    id_equipo1.FTO += datos_equipo1.FTO
+
+    id_equipo1.save()
+
+    ## Equipo Visitante ##
+    id_equipo2.TC2 += datos_equipo2.TC2
+    id_equipo2.I_TC2 += datos_equipo2.I_TC2
+
+    if (id_equipo2.I_TC2 != 0):
+        id_equipo2.TC2_P = int((id_equipo2.TC2 / id_equipo2.I_TC2) * 100)
+
+    id_equipo2.TC3 += datos_equipo2.TC3
+    id_equipo2.I_TC3 += datos_equipo2.I_TC3
+
+    if (id_equipo2.I_TC3 != 0):
+        id_equipo2.TC3_P = int((id_equipo2.TC3 / id_equipo2.I_TC3) * 100)
+
+    if id_equipo2.I_TC2 != 0 and id_equipo2.I_TC3 != 0:
+        id_equipo2.TC_P = int(((id_equipo2.TC2 + id_equipo2.TC3) / (id_equipo2.I_TC2 + id_equipo2.I_TC3)) * 100)
+
+    id_equipo2.TL += datos_equipo2.TL
+    id_equipo2.I_TL += datos_equipo2.I_TL
+
+    if (id_equipo2.I_TL != 0):
+        id_equipo2.TL_P = int((id_equipo2.TL / id_equipo2.I_TL) * 100)
+
+    id_equipo2.AS += datos_equipo2.AS
+    id_equipo2.TAP += datos_equipo2.TAP
+    id_equipo2.REBO += datos_equipo2.REBO
+    id_equipo2.REBD += datos_equipo2.REBD
+    id_equipo2.REBT += datos_equipo2.REBT
+    id_equipo2.REC += datos_equipo2.REC
+    id_equipo2.DES += datos_equipo2.DES
+    id_equipo2.F += datos_equipo2.F
+    id_equipo2.PER += datos_equipo2.PER
+    id_equipo2.FTO += datos_equipo2.FTO
+
+    id_equipo2.save()

@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
     <ul>
-           {{ resultado }}
+        {% for resul in resultado %}
+           {{ resul }}
+            <br>
+        {% endfor %}
 
     </ul>
-</body>
-</html>
+
+{% endblock %}

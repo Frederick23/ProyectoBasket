@@ -9,8 +9,6 @@ class equipo(models.Model):
     sede = models.CharField('Dirección', max_length=100)
 
     # Estadísticas acumuladas
-    puntos_favor = models.IntegerField('Pts Favor',default=0)
-    puntos_contra = models.IntegerField('Pts Contra',default=0)
 
     TC_P = models.IntegerField('TC%',default=0)
     TC2 = models.IntegerField('TC2',default=0)
@@ -80,7 +78,7 @@ class jugador(models.Model):
     PER = models.IntegerField('PER', default=0)
     FTO = models.IntegerField('F+', default=0)
 
-    TIEMPO = models.TimeField('Tiempo', default=datetime.datetime.now())
+
 
 
 
@@ -139,7 +137,7 @@ class stats_jugador(models.Model):
     F = models.IntegerField('F', default=0)
     PER = models.IntegerField('PER', default=0)
     FTO = models.IntegerField('F+', default=0)
-    TIEMPO = models.TimeField('Tiempo',default=datetime.datetime.now())
+    TIEMPO = models.CharField('Tiempo', max_length=10)
     EFI = models.FloatField('EFI',default=0)
 
     class Meta:
@@ -168,7 +166,6 @@ class stats_equipo(models.Model):
     F = models.IntegerField('F', default=0)
     PER = models.IntegerField('PER', default=0)
     FTO = models.IntegerField('F+', default=0)
-    TIEMPO = models.TimeField('Tiempo',default=datetime.datetime.now())
     EFI = models.FloatField('EFI',default=0)
 
     # Del equipo en conjunto

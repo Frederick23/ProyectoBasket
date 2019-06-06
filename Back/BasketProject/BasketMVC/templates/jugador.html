@@ -5,6 +5,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th scope="col">Equipo</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Fecha Nacimiento</th>
@@ -13,7 +14,8 @@
      <tbody>
         {% for jugador in jugadores %}
         <tr>
-          <td scope="row"> {{ jugador.nombre}}</td>
+            <td scope="row"> {{ jugador.equipo.nombre }} </td>
+          <td> {{ jugador.nombre}}</td>
           <td >{{ jugador.apellido1}} {{ jugador.apellido2}}</td>
           <td >{{ jugador.fecha_nac }}</td>
           <td >{{ jugador.pts }}</td>
