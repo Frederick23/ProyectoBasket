@@ -26,7 +26,6 @@ urlpatterns = [
 
     ## Agregar un partido ##
     path('upload', views.formulario_partido, name='upload_partido'),
-    ##path('formpartido', views.formulario_partido, name="formulario_partido")
 
 ]
 

@@ -86,12 +86,7 @@ def upload_partido(file, equipo1, equipo2, fase1):
     ## Id de equipo Visitante ##
     id2 = equipo.objects.get(nombre=visitante)
 
-    id_partido = partido.objects.get(equipo1=id1,equipo2=id2,fase=fase1)
-    ## Llamada a función que actualiza las estadísticas globales de jugador y equipo ##
-    actualizar_jugadores(local,visitante,id_partido)
-    actualizar_equipos(local,visitante,id_partido)
 
-    """
     rows = []
     file_data = file.read().decode("utf-8")
     lines = file_data.split("\n")
@@ -350,10 +345,11 @@ def upload_partido(file, equipo1, equipo2, fase1):
     entrada2.save()
 
 
-    id_partido = partido.objects(equipo1=id1,equipo2=id2,fase=fase1)
+    id_partido = partido.objects.get(equipo1=id1, equipo2=id2, fase=fase1)
     ## Llamada a función que actualiza las estadísticas globales de jugador y equipo ##
-    actualizar_jugadores(local,visitante,id_partido)
-    """
+    actualizar_jugadores(local, visitante, id_partido)
+    actualizar_equipos(local, visitante, id_partido)
+
     return "algo"
 
 def actualizar_jugadores(equipo1, equipo2, partido):
