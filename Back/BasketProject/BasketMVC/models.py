@@ -78,11 +78,6 @@ class jugador(models.Model):
     PER = models.IntegerField('PER', default=0)
     FTO = models.IntegerField('F+', default=0)
 
-
-
-
-
-
 class partido(models.Model):
 
     # Constantes de partido
@@ -112,8 +107,6 @@ class partido(models.Model):
     cuarto4 = models.CharField(blank=False, max_length=5)
     tiempos_extra = models.CharField(blank=False, max_length=5)
     tanteo_final = models.CharField(blank=False, max_length=7)
-
-
 
 class stats_jugador(models.Model):
     id_jugador = models.ForeignKey(jugador, on_delete=models.PROTECT)

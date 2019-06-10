@@ -13,7 +13,7 @@
      <tbody>
         {% for equipo in equipos %}
         <tr>
-          <td scope="row"> {{ equipo.nombre}}</td>
+            <td scope="row"> <a href="/Basket/equipo?nombre={{equipo.nombre}}">{{ equipo.nombre}}</a></td>
           <td >{{ equipo.sede}}</td>
             <td class = "verde">{{ equipo.puntos_favor }}</td>
           <td class = "rojo">{{ equipo.puntos_contra }}</td>

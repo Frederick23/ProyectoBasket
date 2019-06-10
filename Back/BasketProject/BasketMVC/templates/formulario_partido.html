@@ -3,7 +3,18 @@
 {% block content %}
     <form method = "post" enctype="multipart/form-data" action = "{% url 'upload_partido' %} ">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit"> Entrar</button>
+        Equipo Local:
+        {{ form.equipo1 }}
+        <br><br>
+        Equipo Visitante:
+        {{ form.equipo2 }}
+        <br><br>
+        Fase:
+        {{ form.fase }}
+        <br><br>
+        Fichero de Estadísticas:
+        {{ form.file}}
+        <br><br>
+        <button type="submit" class="btn btn-warning"> Entrar</button>
     </form>
 {% endblock %}

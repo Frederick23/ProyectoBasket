@@ -8,23 +8,14 @@ body {
   text-align: center;
 }
 
+
 .container{
     background-color: white;
 }
-
-th {
-    text-align: center;
-    color: white;
+#titulo{
+    color: green;
 }
 
 thead {
     background-color: #292b2c;
-}
-
-#rojo{
-    color = red;
-}
-
-#verde{
-    color = green;
 }

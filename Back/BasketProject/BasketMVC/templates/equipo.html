@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h2> {{ equipo.nombre }}</h2>
+    <br>
+    <div class="tabla_jugadores">
+        <table class="table table-striped">
+        <thead>
+            <th scope="col"> Nombre </th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Dorsal</th>
+        </thead>
+        <tbody style="text-align:center">
+            {% for jugador in jugadores %}
+            <tr>
+                <td scope="row">{{ jugador.nombre}}</td>
+                <td>{{ jugador.apellido1 }}</td>
+                <td>{{ jugador.dorsal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    <div class="tabla_partidos" >
+        <table class="table table-striped">
+        <thead>
+            <th scope="col"> Fase </th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Localización</th>
+            <th scope="col">Local</th>
+            <th scope="col">Visitante</th>
+            <th scope="col">Resultado</th>
+        </thead>
+        <tbody>
+            {% for partido in partidos %}
+            <td scope="row">{{ partido.fase }}</td>
+            <td>{{ partido.fecha }}</td>
+            <td>{{ partido.localizacion }}</td>
+            <td>{{ partido.equipo1.nombre }}</td>
+            <td>{{ partido.equipo2.nombre }}</td>
+            <td>{{ partido.tanteo_final }}</td>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+
+
+
+
+
+{% endblock %}

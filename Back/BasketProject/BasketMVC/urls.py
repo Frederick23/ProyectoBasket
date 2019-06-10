@@ -1,8 +1,12 @@
 from django.urls import path
+from django.conf.urls import url
 from BasketMVC import views
 
 
 urlpatterns = [
+    ## Vacio ##
+    path('', views.index, name='index'),
+
     ## Inicio ##
     path('index', views.index, name = 'index'),
 
@@ -17,6 +21,7 @@ urlpatterns = [
 
     ## Ver un equipo ##
     path('equipo', views.mostrar_equipo, name='Equipo'),
+    url(r'^equipo/$', views.mostrar_equipo, name='Equipo'),
 
     ## Ver un partido ##
     path('partido', views.mostrar_partido, name='Partido'),

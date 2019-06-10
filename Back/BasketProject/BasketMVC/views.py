@@ -21,7 +21,12 @@ def mostrar_jugador(request):
 
 ## Muestra un equipo ##
 def mostrar_equipo(request):
-    return render(request, 'equipo.html', {'equipos': equipo.objects.filter(name='nombre')})
+    nombre2 = request.GET['nombre']
+    id = equipo.objects.get(nombre= nombre2).id
+    return render(request, 'equipo.html', {
+        'equipo': equipo.objects.get(nombre=nombre2),
+        'jugadores': jugador.objects.filter(equipo=id),
+        'partidos': partido.objects.filter(equipo1 = id) | partido.objects.filter(equipo2 = id)})
 
 ## Muestra listado equipos ##
 def mostrar_Equipos(request):
