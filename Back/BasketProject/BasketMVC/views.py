@@ -17,7 +17,13 @@ def Mostrar(request):
 
 ## Muestra un único jugador ##
 def mostrar_jugador(request):
-    return render(request, 'jugadores.html', {'jugador': jugador.objects.filter(name='nombre')})
+    nombre2 = request.GET['nombre']
+    id_equipo = request.GET['equipo']
+    id = jugador.objects.get(nombre=nombre2, equipo=id_equipo).id
+    return render(request, 'jugador.html', {
+        'jugador': jugador.objects.get(nombre=nombre2, equipo=id_equipo),
+        'partidos': stats_jugador.objects.filter(id_jugador=id)
+    })
 
 ## Muestra un equipo ##
 def mostrar_equipo(request):
@@ -38,7 +44,14 @@ def mostrar_Partidos(request):
 
 ## Muestra un partido ##
 def mostrar_partido(request):
-    return render(request, 'partido.html', {'equipos': partido.objects.filter(id='id')})
+    id1 = request.GET['id']
+    p = partido.objects.get(id=id1)
+    return render(request, 'equipo.html', {
+        'partido': p,
+        'statsJugador': stats_jugador.objects.filter(id=id1),
+        'statsEquipo_local': stats_equipo.objects.get(id=id1,id_equipo=p.equipo1),
+        'statsEquipo_visitante': stats_equipo.objects.get(id=id1, id_equipo=p.equipo2)
+    })
 
 ## Agrega un partido ##
 def formulario_partido(request):

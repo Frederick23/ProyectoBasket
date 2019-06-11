@@ -7,16 +7,14 @@
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Sede</th>
-                <th scope="col">Puntos a favor</th>
-                <th scope="col">Puntos en contra</th></tr>
         </thead>
      <tbody>
         {% for equipo in equipos %}
         <tr>
-            <td scope="row"> <a href="/Basket/equipo?nombre={{equipo.nombre}}">{{ equipo.nombre}}</a></td>
+            <td scope="row">
+                <a href="/Basket/equipo?nombre={{equipo.nombre}}">{{ equipo.nombre}}</a>
+            </td>
           <td >{{ equipo.sede}}</td>
-            <td class = "verde">{{ equipo.puntos_favor }}</td>
-          <td class = "rojo">{{ equipo.puntos_contra }}</td>
         </tr>
         {% endfor %}
     </tbody>

@@ -7,6 +7,7 @@ class equipo(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField('Nombre', max_length=30)
     sede = models.CharField('Dirección', max_length=100)
+    abrev = models.CharField('Abreviatura', max_length=100, default='VAC')
 
     # Estadísticas acumuladas
 

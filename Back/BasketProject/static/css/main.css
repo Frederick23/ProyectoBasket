@@ -1,6 +1,9 @@
 body {
   padding-top: 5rem;
   background-image: url("/static/images/fondo.jpeg");
+  background-repeat: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .starter-template {
@@ -8,14 +11,12 @@ body {
   text-align: center;
 }
 
-
 .container{
     background-color: white;
 }
-#titulo{
-    color: green;
-}
 
-thead {
+thead{
+    color:white;
     background-color: #292b2c;
+
 }

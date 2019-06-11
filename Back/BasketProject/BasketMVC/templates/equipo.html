@@ -3,19 +3,21 @@
 
 {% block content %}
 
-    <h2> {{ equipo.nombre }}</h2>
+    <h1> {{ equipo.nombre }}</h1>
     <br>
-    <div class="tabla_jugadores">
+    <div>
         <table class="table table-striped">
         <thead>
-            <th scope="col"> Nombre </th>
+            <th scope="col"> Nombre</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Dorsal</th>
         </thead>
-        <tbody style="text-align:center">
+        <tbody>
             {% for jugador in jugadores %}
             <tr>
-                <td scope="row">{{ jugador.nombre}}</td>
+                <td scope="row">
+                    <a href="/Basket/jugador?nombre={{jugador.nombre}}&equipo={{equipo.id}}">{{ jugador.nombre}}</a>
+                </td>
                 <td>{{ jugador.apellido1 }}</td>
                 <td>{{ jugador.dorsal }}</td>
             </tr>
@@ -23,32 +25,82 @@
         </tbody>
         </table>
     </div>
-    <div class="tabla_partidos" >
-        <table class="table table-striped">
-        <thead>
-            <th scope="col"> Fase </th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Localización</th>
-            <th scope="col">Local</th>
-            <th scope="col">Visitante</th>
-            <th scope="col">Resultado</th>
-        </thead>
-        <tbody>
-            {% for partido in partidos %}
-            <td scope="row">{{ partido.fase }}</td>
-            <td>{{ partido.fecha }}</td>
-            <td>{{ partido.localizacion }}</td>
-            <td>{{ partido.equipo1.nombre }}</td>
-            <td>{{ partido.equipo2.nombre }}</td>
-            <td>{{ partido.tanteo_final }}</td>
-            {% endfor %}
-        </tbody>
-    </table>
+    <hr>
+    <h3>Partidos</h3>
+    <div>
+        <table class="table table-stripped">
+            <thead>
+                <th scope="col">Fase</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Localización</th>
+                <th scope="col">Local</th>
+                <th scope="col">Visitante</th>
+                <th scope="col">Resultado</th>
+            </thead>
+            <tbody>
+                {% for partido in partidos %}
+                <tr>
+                    <td scope="row">{{partido.fase}}</td>
+                    <td>{{partido.fecha}}</td>
+                    <td>{{partido.localizacion}}</td>
+                    <td>{{partido.equipo1.nombre}}</td>
+                    <td>{{partido.equipo2.nombre}}</td>
+                    <td>{{partido.tanteo_final}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
-
-
-
-
-
+    <hr>
+    <h3>Estadísticas</h3>
+    <div>
+        <table class="table table-stripped">
+            <thead>
+                <th scope="col"><abbr title="Porcentaje Tiros Campo">TC%</abbr></th>
+                <th scope="col"><abbr title="Tiros de 2">TC2</abbr></th>
+                <th scope="col"><abbr title="Porcentaje Tiros de 2">%TC2</abbr></th>
+                <th scope="col"><abbr title="Tiros de 3">TC3</abbr></th>
+                <th scope="col"><abbr title="Porcentaje Tiros de 3">%TC3</abbr></th>
+                <th scope="col"><abbr title="Tiros libres">TL</abbr></th>
+                <th scope="col"><abbr title="Porcentaje tiros libres">%TL</abbr></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">{{ equipo.TC_P }}</td>
+                    <td>{{ equipo.TC2 }}/{{ equipo.I_TC2 }}</td>
+                    <td>{{ equipo.TC2_P }}</td>
+                    <td>{{ equipo.TC3 }}/{{ equipo.I_TC3 }}</td>
+                    <td>{{ equipo.TC3_P }}</td>
+                    <td>{{ equipo.TL }}/{{ equipo.I_TL }}</td>
+                    <td>{{ equipo.TL_P }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-stripped">
+            <thead>
+                <th scope="col">AS</th>
+                <th scope="col">TAP</th>
+                <th scope="col">REBO</th>
+                <th scope="col">REBD</th>
+                <th scope="col">REBT</th>
+                <th scope="col">REC</th>
+                <th scope="col">DES</th>
+                <th scope="col">F</th>
+                <th scope="col">PER</th>
+                <th scope="col">F+</th>
+            </thead>
+            <tbody>
+                    <td scope="row">{{ equipo.AS }}</td>
+                    <td>{{ equipo.TAP }}</td>
+                    <td>{{ equipo.REBO }}</td>
+                    <td>{{ equipo.REBD }}</td>
+                    <td>{{ equipo.REBT }}</td>
+                    <td>{{ equipo.REC }}</td>
+                    <td>{{ equipo.DES }}</td>
+                    <td>{{ equipo.F }}</td>
+                    <td>{{ equipo.PER }}</td>
+                    <td>{{ equipo.FTO }}</td>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
