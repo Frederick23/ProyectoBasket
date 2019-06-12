@@ -5,7 +5,6 @@ from .models import *
 
 admin.site.site_header = "Panel de Administrador"
 
-
 @admin.register(jugador)
 class jugadorAdmin(admin.ModelAdmin):
     list_display = ('equipo','nombre','apellido1','apellido2')

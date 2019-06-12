@@ -40,7 +40,9 @@
             <tbody>
                 {% for partido in partidos %}
                 <tr>
-                    <td scope="row">{{partido.fase}}</td>
+                    <td scope="row">
+                        <a href="/Basket/partido?id3={{partido.id}}">{{partido.fase}}</a>
+                    </td>
                     <td>{{partido.fecha}}</td>
                     <td>{{partido.localizacion}}</td>
                     <td>{{partido.equipo1.nombre}}</td>

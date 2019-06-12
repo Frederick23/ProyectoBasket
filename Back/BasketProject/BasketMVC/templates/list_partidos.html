@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Fase</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Local</th>
+                <th scope="col">Visitante</th>
+                <th scope="col">Resultado</th>
+        </thead>
+     <tbody>
+        {% for partido in partidos %}
+        <tr>
+            <td scope="row">
+                <a href="/Basket/partido?id3={{partido.id}}">{{ partido.fase}}</a>
+            </td>
+          <td >{{ partido.fecha}}</td>
+          <td >{{ partido.equipo1.nombre}}</td>
+            <td>{{partido.equipo2.nombre}}</td>
+            <td>{{partido.tanteo_final}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

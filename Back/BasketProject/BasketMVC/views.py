@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from datetime import time
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from BasketMVC.forms import PartidoForm
 import re
 import copy
@@ -8,14 +10,17 @@ from BasketMVC.models import jugador, equipo, partido, stats_equipo, stats_jugad
 import csv
 
 ## Devuelve la página de inicio ##
+@login_required
 def index(request):
     return render(request, 'inicio.html')
 
 ## Muestra varios jugadores ##
+@login_required
 def Mostrar(request):
     return render(request, 'jugador.html', {'jugadores': jugador.objects.all()})
 
 ## Muestra un único jugador ##
+@login_required
 def mostrar_jugador(request):
     nombre2 = request.GET['nombre']
     id_equipo = request.GET['equipo']
@@ -26,6 +31,7 @@ def mostrar_jugador(request):
     })
 
 ## Muestra un equipo ##
+@login_required
 def mostrar_equipo(request):
     nombre2 = request.GET['nombre']
     id = equipo.objects.get(nombre= nombre2).id
@@ -35,25 +41,30 @@ def mostrar_equipo(request):
         'partidos': partido.objects.filter(equipo1 = id) | partido.objects.filter(equipo2 = id)})
 
 ## Muestra listado equipos ##
+@login_required
 def mostrar_Equipos(request):
     return render(request, 'list_equipos.html', {'equipos': equipo.objects.all()})
 
 ## Muestra un listado de partidos ##
+@login_required
 def mostrar_Partidos(request):
     return render(request, 'list_partidos.html', {'partidos': partido.objects.all()})
 
 ## Muestra un partido ##
+@login_required
 def mostrar_partido(request):
-    id1 = request.GET['id']
+    id1 = request.GET['id3']
     p = partido.objects.get(id=id1)
-    return render(request, 'equipo.html', {
+    return render(request, 'partido.html', {
         'partido': p,
-        'statsJugador': stats_jugador.objects.filter(id=id1),
-        'statsEquipo_local': stats_equipo.objects.get(id=id1,id_equipo=p.equipo1),
-        'statsEquipo_visitante': stats_equipo.objects.get(id=id1, id_equipo=p.equipo2)
+        'statsJugador': stats_jugador.objects.filter(id_partido=id1),
+        'statsEquipo_local': stats_equipo.objects.get(id_partido=id1,id_equipo=p.equipo1),
+        'statsEquipo_visitante': stats_equipo.objects.get(id_partido=id1, id_equipo=p.equipo2)
     })
 
+
 ## Agrega un partido ##
+@staff_member_required
 def formulario_partido(request):
 
     ## Obtenemos la petición y mostramos el formulario ##

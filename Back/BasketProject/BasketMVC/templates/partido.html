@@ -50,73 +50,114 @@
             </thead>
             <tbody>
                 <tr style="text-align:center">
-                    <td scope="row">{{ jugador.AS }}</td>
-                    <td>{{ jugador.AS_p }}</td>
-                    <td>{{ jugador.TAP }}</td>
-                    <td>{{ jugador.TAP_p }}</td>
-                    <td>{{ jugador.REBO }}</td>
-                    <td>{{ jugador.REBD }}</td>
-                    <td>{{ jugador.REBT }}</td>
-                    <td>{{ jugador.REB_p }}</td>
-                    <td>{{ jugador.REC }}</td>
-                    <td>{{ jugador.REC_p }}</td>
-                    <td>{{ jugador.DES }}</td>
-                    <td>{{ jugador.F }}</td>
-                    <td>{{ jugador.PER }}</td>
-                    <td>{{ jugador.FTO }}</td>
+                    <td scope="row">{{ statsEquipo_local.pts }}</td>
+                    <td>{{ statsEquipo_local.TC2 }}/{{statsEquipo_local.I_TC2}}</td>
+                    <td>{{ statsEquipo_local.TC3 }}/{{statsEquipo_local.I_TC3}}</td>
+                    <td>{{ statsEquipo_local.TL }}/{{statsEquipo_local.I_TL}}</td>
+                    <td>{{ statsEquipo_local.AS }}</td>
+                    <td>{{ statsEquipo_local.TAP }}</td>
+                    <td>{{ statsEquipo_local.REBO }}</td>
+                    <td>{{ statsEquipo_local.REBD }}</td>
+                    <td>{{ statsEquipo_local.REBT }}</td>
+                    <td>{{ statsEquipo_local.REC }}</td>
+                    <td>{{ statsEquipo_local.DES }}</td>
+                    <td>{{ statsEquipo_local.F }}</td>
+                    <td>{{ statsEquipo_local.PER }}</td>
+                    <td>{{ statsEquipo_local.FTO }}</td>
+                    <td>{{ statsEquipo_local.EFI }}</td>
                 </tr>
             </tbody>
         </table>
-
-        <hr>
-        <h2>Estadísticas por partido</h2>
         <table class="table table-stripped">
             <thead >
-                <th scope="col">Partido</th>
-                <th scope="col"><abbr title="puntos">pts</abbr></th>
-                <th scope="col"><abbr title="Tiros de 2">TC2</abbr></th>
-                <th scope="col"><abbr title="Tiros de 3">TC3</abbr></th>
+                <th scope="col"><abbr title="Posesiones">POS</abbr></th>
+                <th scope="col"><abbr title="Puntos por posesión">P/POS</abbr></th>
+                <th scope="col"><abbr title="Puntos en la zona">ZONA</abbr></th>
+                <th scope="col"><abbr title="Máxima ventaja">VENT</abbr></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">{{ statsEquipo_local.POS }}</td>
+                    <td>{{ statsEquipo_local.P_POS }}</td>
+                    <td>{{ statsEquipo_local.ZONA }}/{{statsEquipo_local.I_ZONA}}</td>
+                    <td>{{ statsEquipo_local.VENT }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{ partido.equipo2.nombre }}
+        <table class="table table-stripped">
+            <thead >
+                <th scope="col"><abbr title="Puntos">pts</abbr></th>
+                <th scope="col"><abbr title="Tiros 2">TC2</abbr></th>
+                <th scope="col"><abbr title="Tiros 3">TC3</abbr></th>
                 <th scope="col"><abbr title="Tiros Libres">TL</abbr></th>
-
                 <th scope="col"><abbr title="Asistencias">AS</abbr></th>
                 <th scope="col"><abbr title="Tapones">TAP</abbr></th>
-                <th scope="col"><abbr title="Rebotes Ofensivos">REBO</abbr></th>
-                <th scope="col"><abbr title="Rebotes Defensivos">REBD</abbr></th>
-                <th scope="col"><abbr title="Rebotes Totales">REBT</abbr></th>
+                <th scope="col"><abbr title="Rebotes ofensivos">REBO</abbr></th>
+                <th scope="col"><abbr title="Rebotes defensivos">REBD</abbr></th>
+                <th scope="col"><abbr title="Rebotes totales">REBT</abbr></th>
                 <th scope="col"><abbr title="Recuperaciones">REC</abbr></th>
-                <th scope="col"><abbr title="Recuperaciones por partido">REC/P</abbr></th>
                 <th scope="col"><abbr title="Desvios">DES</abbr></th>
                 <th scope="col"><abbr title="Faltas">F</abbr></th>
-                <th scope="col"><abbr title="Pérdidas">PER</abbr></th>
-                <th scope="col"><abbr title="Faltas Recibidas">F+</abbr></th>
-                <th scope="col"><abbr title="Tiempo jugado">TIEMPO</abbr></th>
+                <th scope="col"><abbr title="Perdidas">PER</abbr></th>
+                <th scope="col"><abbr title="Faltas recibidas">FTO</abbr></th>
                 <th scope="col"><abbr title="Eficiencia">EFI</abbr></th>
             </thead>
             <tbody>
-                {% for entrada in partidos %}
                 <tr style="text-align:center">
-                    <td scope="row">{{ entrada.id_partido.equipo1.abrev }} - {{ entrada.id_partido.equipo2.abrev }}</td>
-                    <td>{{ entrada.pts }}</td>
-                    <td>{{ entrada.TC2 }}/{{ entrada.I_TC2 }}</td>
-                    <td>{{ entrada.TC3 }}/{{ entrada.I_TC3 }}</td>
-                    <td>{{ entrada.TL }}/{{ entrada.I_TL }}</td>
-                    <td>{{ entrada.AS }}</td>
-                    <td>{{ entrada.TAP }}</td>
-                    <td>{{ entrada.REBO }}</td>
-                    <td>{{ entrada.REBD }}</td>
-                    <td>{{ entrada.REBT }}</td>
-                    <td>{{ entrada.REC }}</td>
-                    <td>{{ entrada.DES }}</td>
-                    <td>{{ entrada.F }}</td>
-                    <td>{{ entrada.PER }}</td>
-                    <td>{{ entrada.FTO }}</td>
-                    <td>{{ entrada.TIEMPO }}</td>
-                    <td>{{ entrada.EFI }}</td>
+                    <td scope="row">{{ statsEquipo_visitante.pts }}</td>
+                    <td>{{ statsEquipo_visitante.TC2 }}/{{statsEquipo_visitante.I_TC2}}</td>
+                    <td>{{ statsEquipo_visitante.TC3 }}/{{statsEquipo_visitante.I_TC3}}</td>
+                    <td>{{ statsEquipo_visitante.TL }}/{{statsEquipo_visitante.I_TL}}</td>
+                    <td>{{ statsEquipo_visitante.AS }}</td>
+                    <td>{{ statsEquipo_visitante.TAP }}</td>
+                    <td>{{ statsEquipo_visitante.REBO }}</td>
+                    <td>{{ statsEquipo_visitante.REBD }}</td>
+                    <td>{{ statsEquipo_visitante.REBT }}</td>
+                    <td>{{ statsEquipo_visitante.REC }}</td>
+                    <td>{{ statsEquipo_visitante.DES }}</td>
+                    <td>{{ statsEquipo_visitante.F }}</td>
+                    <td>{{ statsEquipo_visitante.PER }}</td>
+                    <td>{{ statsEquipo_visitante.FTO }}</td>
+                    <td>{{ statsEquipo_visitante.EFI }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-stripped">
+            <thead >
+                <th scope="col"><abbr title="Posesiones">POS</abbr></th>
+                <th scope="col"><abbr title="Puntos por posesión">P/POS</abbr></th>
+                <th scope="col"><abbr title="Puntos en la zona">ZONA</abbr></th>
+                <th scope="col"><abbr title="Máxima ventaja">VENT</abbr></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">{{ statsEquipo_visitante.POS }}</td>
+                    <td>{{ statsEquipo_visitante.P_POS }}</td>
+                    <td>{{ statsEquipo_visitante.ZONA }}/{{statsEquipo_visitante.I_ZONA}}</td>
+                    <td>{{ statsEquipo_visitante.VENT }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <h2>Jugadores</h2>
+        <table class="table table-stripped">
+            <thead>
+                <th scope="col">Equipo</th>
+                <th>Nombre</abbr></th>
+                <th>Dorsal</abbr></th>
+            </thead>
+            <tbody>
+                {% for entrada in statsJugador %}
+                <tr>
+                    <td scope="row">{{ entrada.id_jugador.equipo.nombre }}</td>
+                    <td>
+                        <a href="/Basket/jugador?nombre={{entrada.id_jugador.nombre}}&equipo={{entrada.id_jugador.equipo.id}}">{{ entrada.id_jugador.nombre }}</a>
+                    </td>
+                    <td>{{ entrada.id_jugador.dorsal }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-
-
 
 {% endblock %}
