@@ -122,6 +122,50 @@
                 {% endfor %}
             </tbody>
         </table>
+    <div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.setOptions({
+     colors: ['#6fa3f7', '#edbb57']
+    });
+
+    Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Porcentaje de rebotes'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Rebotes',
+        data: [{
+            name: 'Rebotes ofensivos',
+            y: {{ jugador.REBO }},
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Rebotes defensivos',
+            y: {{ jugador.REBD }}
+        }]
+    }]
+});
+  </script>
 
 
 

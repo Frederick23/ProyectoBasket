@@ -72,7 +72,7 @@ def formulario_partido(request):
     if request.method == 'POST':
         form = PartidoForm(request.POST, request.FILES)
         resultado = upload_partido(request.FILES['file'], request.POST['equipo1'], request.POST['equipo2'], request.POST['fase'])
-        return render(request, 'prueba.html', {'resultado': resultado})
+        return render(request, 'inicio.html', {'resultado': resultado})
     else:
         form = PartidoForm()
         return render(request, 'formulario_partido.html', {'form': form})

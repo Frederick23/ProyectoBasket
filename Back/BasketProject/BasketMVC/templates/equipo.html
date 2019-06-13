@@ -106,4 +106,52 @@
             </tbody>
         </table>
     </div>
+<div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.setOptions({
+     colors: ['#6fa3f7', '#edbb57','#ef7083']
+    });
+
+    Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Porcentaje de tiros'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Tiros',
+        data: [{
+            name: 'Tiros de 2',
+            y: {{ equipo.TC2 }},
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Tiros de 3',
+            y: {{ equipo.TC3 }}
+        },
+        {
+            name: 'Tiros Libres',
+            y: {{ equipo.TL }}
+        }]
+    }]
+});
+  </script>
 {% endblock %}

@@ -141,6 +141,60 @@
             </tbody>
         </table>
         <hr>
+        <div id="container"></div>
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        <script>
+        Highcharts.setOptions({
+     colors: ['#6fa3f7', '#edbb57']
+    });
+            Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Gráfica'
+    },
+
+    xAxis: {
+        categories: [
+            'TC2',
+            'TC3',
+            'TL',
+            'REBO',
+            'REBD',
+            'F'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: '{{partido.equipo1.nombre}}',
+        data: [{{ statsEquipo_local.TC2 }},{{ statsEquipo_local.TC3 }},{{ statsEquipo_local.TL }},{{ statsEquipo_local.REBO }},{{ statsEquipo_local.REBD }},{{ statsEquipo_local.F }}]
+
+    }, {
+        name: '{{partido.equipo2.nombre}}',
+        data: [{{ statsEquipo_visitante.TC2 }},{{ statsEquipo_visitante.TC3 }},{{ statsEquipo_visitante.TL }},{{ statsEquipo_visitante.REBO }},{{ statsEquipo_visitante.REBD }},{{ statsEquipo_visitante.F }}]
+
+    }]
+});
+        </script>
+        <hr>
         <h2>Jugadores</h2>
         <table class="table table-stripped">
             <thead>
