@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-    <h1>{{jugador.nombre}}</h1>
+    <h1> <img src="/static/images/{{jugador.equipo.abrev}}.png" height="100" width="100"></h1>
+    <h1>{{jugador.nombre}} {{jugador.apellido1}}</h1>
     <h2> Número {{jugador.dorsal}} de {{jugador.equipo.nombre}}</h2>
 
     <hr>

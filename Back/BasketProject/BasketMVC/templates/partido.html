@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    <h1> <img src="/static/images/{{partido.equipo1.abrev}}.png" height="100" width="100">/<img src="/static/images/{{partido.equipo2.abrev}}.png" height="100" width="100"></h1>
     <h1>{{partido.equipo1.nombre}} - {{partido.equipo2.nombre}}</h1>
     <h2> {{partido.fase}} {{partido.fecha}} {{partido.localizacion}}</h2>
 
@@ -152,7 +153,7 @@
                 <tr>
                     <td scope="row">{{ entrada.id_jugador.equipo.nombre }}</td>
                     <td>
-                        <a href="/Basket/jugador?nombre={{entrada.id_jugador.nombre}}&equipo={{entrada.id_jugador.equipo.id}}">{{ entrada.id_jugador.nombre }}</a>
+                        <a href="/Basket/jugador?nombre={{entrada.id_jugador.nombre}}&equipo={{entrada.id_jugador.equipo.id}}&apellido={{entrada.id_jugador.apellido1}}">{{ entrada.id_jugador.nombre }}</a>
                     </td>
                     <td>{{ entrada.id_jugador.dorsal }}</td>
                 </tr>

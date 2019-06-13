@@ -3,7 +3,8 @@
 
 {% block content %}
 
-    <h1> {{ equipo.nombre }}</h1>
+    <h1> <img src="/static/images/{{equipo.abrev}}.png" height="100" width="100"></h1>
+    <h1>{{ equipo.nombre }}</h1>
     <br>
     <div>
         <table class="table table-striped">
@@ -16,7 +17,7 @@
             {% for jugador in jugadores %}
             <tr>
                 <td scope="row">
-                    <a href="/Basket/jugador?nombre={{jugador.nombre}}&equipo={{equipo.id}}">{{ jugador.nombre}}</a>
+                    <a href="/Basket/jugador?nombre={{jugador.nombre}}&equipo={{equipo.id}}&apellido={{jugador.apellido1}}">{{ jugador.nombre}}</a>
                 </td>
                 <td>{{ jugador.apellido1 }}</td>
                 <td>{{ jugador.dorsal }}</td>

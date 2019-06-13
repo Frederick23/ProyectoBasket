@@ -24,9 +24,10 @@ def Mostrar(request):
 def mostrar_jugador(request):
     nombre2 = request.GET['nombre']
     id_equipo = request.GET['equipo']
-    id = jugador.objects.get(nombre=nombre2, equipo=id_equipo).id
+    apellido2 = request.GET['apellido']
+    id = jugador.objects.get(nombre=nombre2, equipo=id_equipo, apellido1 = apellido2).id
     return render(request, 'jugador.html', {
-        'jugador': jugador.objects.get(nombre=nombre2, equipo=id_equipo),
+        'jugador': jugador.objects.get(nombre=nombre2, equipo=id_equipo, apellido1 = apellido2),
         'partidos': stats_jugador.objects.filter(id_jugador=id)
     })
 
